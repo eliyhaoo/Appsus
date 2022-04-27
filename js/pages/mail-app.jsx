@@ -33,7 +33,7 @@ export class MailApp extends React.Component {
         if(!this.state.emails.length) return <div className="loader"></div>
         return<main className="mail-app flex">
             <MailFilter />
-            <div className="mails-container flex">
+            <div className="mails-container">
             <MailList emails={emails}/>
             <Switch>
             <Route path="/mail/list/:emailId?" component={MailDetails} />
