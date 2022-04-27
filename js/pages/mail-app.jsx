@@ -1,6 +1,6 @@
 import {MailList} from '../apps/mail/cmps/mail-list.jsx'
 import {MailFilter} from '../apps/mail/cmps/mail-filter.jsx'
-import {mailService } from '../services/mail-service.js'
+import {mailService } from '../apps/mail/services/mail-service.js'
 import {MailDetails } from '../apps/mail/cmps/mail-details.jsx'
 
 const {Route,Switch} = ReactRouterDOM
