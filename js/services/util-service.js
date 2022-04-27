@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     getCurrDate,
-    debounce
+    debounce,
+    getFormatedTime
 }
 
 
@@ -82,4 +83,13 @@ function getCurrDate() {
     const month = currDate.getMonth() + 1
     const day = currDate.getDate()
     return year + '-' + padNum(month) + '-' + day
+}
+
+function getFormatedTime(timeStamp){
+    const date = new Date(timeStamp)
+    const hour = padNum(date.getHours())
+    const min = padNum(date.getMinutes())
+    return hour+':'+min
+
+
 }

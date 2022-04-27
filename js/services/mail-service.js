@@ -37,7 +37,7 @@ function _createEmails() {
 
 }
 
-function _createEmail(subject, body = 'Would love to catch up sometimes', to = 'momo@momo.com') {
+function _createEmail(subject, body = 'Would love to catch up sometimes', to = 'momo@momo.com' ,from='yaronb@appsus.com') {
     return {
         id: utilService.makeId(5),
         subject,
@@ -45,6 +45,7 @@ function _createEmail(subject, body = 'Would love to catch up sometimes', to = '
         isRead: Math.random() > 0.2 ? false : true,
         sentAt: Date.now() - (60 * 1000),
         to,
+        from,
     }
 
 }
