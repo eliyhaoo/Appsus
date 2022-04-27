@@ -13,11 +13,14 @@ export function MailPreview({email}) {
     const readClass = isRead? 'read':'' 
    
 
-    return <Link to={`/mail/${id}`}>
-     <section key={id} className={`mail-preview flex ${readClass}`} >
+    return <Link to={`/mail/details/${id}`}>
+     <section key={id} className={`mail-preview flex space-between ${readClass}`} >
 
-        <div className="mail-tag">*</div>
-        <div className="mail-info">{sender} <span>{shortSub}</span><small>{text}</small></div>
+         
+        <span className="mail-tag">*</span> 
+        <div className="mail-info flex"> 
+        {sender} <span>{shortSub}</span><small>{text}</small>
+        </div>
         <div className="sent-at">{time}</div>
          
     </section>
