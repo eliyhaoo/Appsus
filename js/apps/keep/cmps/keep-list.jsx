@@ -1,14 +1,9 @@
+import {KeepPreview} from './keep-preview.jsx'
 
+export function KeepList({notes}){
 
-export class KeepList extends React.Component{
-
-    state = {
-        bubi: ''
-    }
-
-    render(){
         return <section className="keep-list">
-            <h1>This is keep list</h1>
+            {notes.map(note=> <KeepPreview note={note} key={note.id}/>)}
         </section>
-    }
+    
 }

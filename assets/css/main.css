@@ -11,16 +11,28 @@
 
 /* Views */
 
+
 /* Pages */
+
 @import './pages/apps.css';
 
-
 /* Cmps  */
-@import './cmps/app-header.css';
 
+@import './cmps/app-header.css';
 
 /* Mail Cmps */
 
 @import './apps/mail//mail-app.css';
 @import './apps/mail/cmps/mail-filter.css';
 @import './apps/mail/cmps/mail-preview.css';
+
+/* Keep Cmps */
+
+@import './apps/keep/cmps/keep-filter.css';
+@import './apps/keep/cmps/keep-list.css';
+@import './apps/keep/cmps/keep-preview.css';
+@import './apps/keep/cmps/note-txt.css';
+
+/* Keep Pages  */
+
+@import './apps/keep/pages/keep-app.css';
