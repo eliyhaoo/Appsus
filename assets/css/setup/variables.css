@@ -1,0 +1,10 @@
+:root {
+    --main-bg-color: #f6f6f6;
+    --main-text-color: #222831;
+    --main-card-color: #A6E3E9;
+    --secondary-bg-color: #CBF1F5;
+    --secondary-text-color: #393E46;
+    --secondary-card-color: #E3FDFD;
+    --main-txt-shadow-color: #e3fdfd8f;
+    --main-shadow-color: rgba(0, 0, 0, 0.457);
+}
