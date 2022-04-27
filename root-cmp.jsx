@@ -3,6 +3,7 @@ import { AppFooter } from "./js/cmps/app-footer.jsx"
 import { Home } from "./js/pages/home.jsx"
 import { MailApp } from "./js/pages/mail-app.jsx"
 import { MailDetails } from "./js/apps/mail/cmps/mail-details.jsx"
+import { KeepApp } from "./js/apps/keep/pages/keep-app.jsx"
 
 
 const Router = ReactRouterDOM.HashRouter
@@ -16,7 +17,7 @@ export function Apps() {
         <section className="main-route-container flex">
             <Switch>
                 {/* <Route path="/book" component={BookApp} /> */}
-                {/* <Route path="/keep" component={KeepApp} /> */}
+                <Route path="/keep" component={KeepApp} />
                 
                 <Route path="/mail" component={MailApp} />
                 <Route path="/" component={Home} />
