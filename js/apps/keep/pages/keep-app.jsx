@@ -56,10 +56,10 @@ export class KeepApp extends React.Component {
         if (!this.notesToDisplay) return <React.Fragment></React.Fragment>
         return <section className="keep-app flex column">
             <AddNote add={this.onAddNote} />
-            <div className="filter-list-container flex">
-            <KeepFilter />
+         
+         
             <KeepList notes={this.state.notes} />
-            </div>
+           
         </section>
     }
 }

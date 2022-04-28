@@ -5,6 +5,7 @@
     border-radius: 7px;
     box-shadow: 0.5px 1px 0px #e0e0e0;
     transition: box-shadow 0.2s;
+    margin: 10px;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
@@ -12,6 +13,7 @@
 
 .keep-preview .note {
     margin-bottom: 1.5px;
+    width: 100%
 }
 
 .keep-preview:hover {
