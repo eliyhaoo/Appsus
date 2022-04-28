@@ -13,7 +13,7 @@ export class MailFilter extends React.Component {
 
             FILTER
 
-            <Link to="mail/list" >LIST</Link>
+            <Link to="mail/compose" ><button>Compose</button></Link>
            
         </section>
     }

@@ -2,6 +2,7 @@ import {MailList} from '../apps/mail/cmps/mail-list.jsx'
 import {MailFilter} from '../apps/mail/cmps/mail-filter.jsx'
 import {mailService } from '../apps/mail/services/mail-service.js'
 import {MailDetails } from '../apps/mail/cmps/mail-details.jsx'
+import {MailCompose } from '../apps/mail/cmps/mail-compose.jsx'
 import { eventBusService } from '../services/event-bus-service.js' 
 
 const {Route,Switch} = ReactRouterDOM
@@ -16,9 +17,11 @@ export class MailApp extends React.Component {
         filterBy:null
 
     }
+    removeEvent
 
     componentDidMount(){
-        setTimeout(this.loadEmails,1000)    
+        setTimeout(this.loadEmails,1000) 
+        this.removeEvent = eventBusService.on('delete',(email)=>{this.onDeleteEmail(email)})   
     }
 
     loadEmails=()=>{
@@ -34,6 +37,11 @@ export class MailApp extends React.Component {
 
     }
 
+    onDeleteEmail(emailId){
+        mailService.deleteEmail(emailId)
+        .then(()=>{this.loadEmails()})
+    }
+
 
 
 
@@ -43,11 +51,10 @@ export class MailApp extends React.Component {
         return<main className="mail-app flex">
             <MailFilter onSetFilter={this.onSetFilter} />
             <div className="mails-container">
-            {/* <MailList emails={emails}/>
-            <section> */}
-
+        
             <Switch>
             <Route path="/mail/details/:emailId?" component={MailDetails} />   
+            <Route path="/mail/compose" component={MailCompose}/>
             <Route path="/mail/" component={MailList}/>
             </Switch>
         
