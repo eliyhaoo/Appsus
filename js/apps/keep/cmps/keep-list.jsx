@@ -6,7 +6,7 @@ export function KeepList({ notes }) {
 
 
     return  <section className="keep-list">
-                <AddNote />
+                {/* <AddNote /> */}
                 <div className="previews-container grid">
                 {notes.map(note => <KeepPreview note={note} key={note.id} />)}
                 </div>

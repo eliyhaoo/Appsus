@@ -1,0 +1,14 @@
+.keep-filter {
+    width: 30%;
+}
+
+.filter-item {
+    padding: 10px 20px;
+    margin: 4px 2px;
+}
+
+.filter-item:hover {
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+    background-color: #fae7ae;
+}

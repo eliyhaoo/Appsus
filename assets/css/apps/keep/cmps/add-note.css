@@ -1,0 +1,20 @@
+.add-note {
+    margin: 10px auto;
+}
+
+.add-note input {
+    border: none;
+    padding: 0 20px;
+}
+
+.add-note form button {
+    text-decoration: none;
+    border: none;
+    font-size: 1.2em;
+    background-color: transparent;
+}
+
+.add-note:hover {
+    cursor: pointer;
+    box-shadow: outset 2px 2px 0 rgb(0 0 0 / 10%);
+}

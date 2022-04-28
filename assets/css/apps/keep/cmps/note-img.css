@@ -1,7 +1,7 @@
 .note-img-container {
     width: 50%;
-    height: fit-content;
-    border-radius: 3px;
+    /* height: fit-content; */
+    border-radius: 5px;
 }
 
 .note-img {
