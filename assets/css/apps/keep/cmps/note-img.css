@@ -1,0 +1,12 @@
+.note-img-container {
+    width: 50%;
+    height: fit-content;
+    border-radius: 3px;
+}
+
+.note-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

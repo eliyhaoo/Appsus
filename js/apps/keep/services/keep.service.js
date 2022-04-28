@@ -1,9 +1,10 @@
-import { utilService } from 'js/services/util-service.js'
-import { storageService } from 'js/services/storage-service.js'
+import { utilService } from '../../../services/util-service'
+import { storageService } from '../../../storage-service.js'
 
 export const keepService = {
     query,
-    getById
+    getById,
+    remove
 }
 
 
@@ -29,11 +30,22 @@ function getById(noteId) {
 
 
 
+function remove(noteId) {
+    let notes = _loadFromStorage()
+    notes = notes.filter(note => note.id !== noteId)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function add(type) {
+
+}
+
 function _createNotes() {
     const notes = []
     for (let i = 0; i < 10; i++) {
-        // const type = gNoteTypes[utilService.getRandomIntInclusive(0, gNoteTypes.length - 1)]
-        const type = gNoteTypes[1]
+        const type = gNoteTypes[utilService.getRandomIntInclusive(0, gNoteTypes.length - 1)]
+            // const type = gNoteTypes[1]
         notes.push(_createNote(type))
     }
     return notes
@@ -56,7 +68,7 @@ function _createNote(currType) {
                 id: utilService.makeId(5),
                 type: "note-img",
                 info: {
-                    url: "http://some-img/me", // try and make a function to get an image and title from a list of imgs 
+                    url: `../../../../assets/img/${utilService.getRandomIntInclusive(1,6)}.jpg`, // try and make a function to get an image and title from a list of imgs 
                     title: "Bobi and Me"
                 },
                 style: {
@@ -71,11 +83,10 @@ function _createNote(currType) {
                     label: "Get my stuff together",
                     todos: [
                         { txt: "Driving license", doneAt: null },
-                        { txt: "Coding power", doneAt: getFormatedTime(Date.now() - (60000 * 60)) }
+                        { txt: "Coding power", doneAt: utilService.getFormatedTime(Date.now() - (60000 * 60)) }
                     ]
                 }
             }
-
     }
 }
 

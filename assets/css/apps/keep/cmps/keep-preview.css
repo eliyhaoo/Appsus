@@ -1,5 +1,15 @@
-.keep-preview {
-    height: 200px;
-    width: 175px;
+.keep-preview.flex {
+    width: 100%;
     background: aqua;
+    border-radius: 7px;
+    box-shadow: 0.5px 1px 0px grey;
+    transition: box-shadow 0.2s;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.keep-preview:hover {
+    box-shadow: 0.5px 1px 0px 1.4px grey;
+    cursor: pointer;
 }
