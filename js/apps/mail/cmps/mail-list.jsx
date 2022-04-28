@@ -36,6 +36,7 @@ export class MailList extends React.Component {
     render(){
 
         const {emails} = this.state
+        if (!emails) return <React.Fragment></React.Fragment>
         return <section className="mail-list flex column">
 
        

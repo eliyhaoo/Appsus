@@ -1,10 +1,18 @@
-.mail-app {
+.mail-app-container {
+   width:100%;
+   
+}
+.mail-app-container .mail-app {
+   height:100%;
    width:100%
+   
 
 }
 .mails-container {
-    background-color: aliceblue;
+    background-color: inherit;
     flex-grow: 1;
+    border-inline-start: 1px solid var(--main-sub-text-color);
+   box-shadow: 7px 10px 7px 5px
     
    
 }

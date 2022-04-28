@@ -2,8 +2,8 @@
 
     padding: 15px 20px;
     border-bottom: solid lightgrey 1px;
-    gap:1.2rem;   
-    transition: all 0.4s;
+      
+    transition: all 0.2s;
     cursor: pointer;
 }
 .mail-small-preview:hover {
@@ -14,17 +14,21 @@
     0 0 6px 2px rgb(95 99 104 / 60%);
       
 }
+.mail-small-preview .preview-start{
+    gap: 1em;
+    min-width: 150px
+}
 .mail-small-preview .mail-info{
-
-    flex-grow: 1;
-    
-    
+    flex-grow: 1;  
+    gap:1em;
+    align-items:center;
+    overflow-x: hidden;
 }
 .mail-small-preview .mail-info > :nth-child(1){
-    margin-inline-start: 2rem  
+    align-self:center
 }
 .mail-small-preview .mail-info > :nth-child(2){
-    margin-inline-start: 0.5rem;  
+    /* margin-inline-start: 0.5rem;   */
     color: var(--main-sub-text-color)
 
 }
