@@ -2,9 +2,19 @@
 .mail-compose {
     height: 100%;
     width: 100%;
-    background-color: blueviolet;
+    border-radius: 8px 8px 0 0;
 }
 
 .mail-compose header {
-    background-color:#202124 ;
+    padding: 15px 0px 31px 15px;
+    border-radius: 8px 8px 0 0;
+    background-color: var(--compose-header-color) ;
+    height: 2rem;
+    color: var(--main-bg-color);
+}
+.mail-compose .info-container {
+    background-color: blueviolet;
+    height: 100%;
+    width:100%
+    
 }

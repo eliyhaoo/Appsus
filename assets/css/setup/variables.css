@@ -1,8 +1,11 @@
 :root {
-    --main-bg-color: #f6f6f6;
-    --main-text-color: #202124
+    --main-bg-color: #FFFFFF;
+    --main-text-color: #222831;
+    --main-border-color: rgb(100 121 143 / 12%);
+
     --main-card-color: #A6E3E9;
-    --secondary-bg-color: #CBF1F5;
+
+    --secondary-bg-color: #f1f3f4;
     --secondary-text-color: #393E46;
     --secondary-card-color: #E3FDFD;
     --main-txt-shadow-color: #e3fdfd8f;
@@ -11,8 +14,9 @@
     --main-active-color: rgba(87, 85, 85, 0.835);
     --main-sub-text-color: rgb(136, 136, 136);
     
+    --compose-header-color: #404040;
     --inbox-hoover-color: #fadbd8;
     --red-text-color: #db392f
-
+    
 
 }

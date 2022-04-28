@@ -5,7 +5,7 @@ const {NavLink} = ReactRouterDOM
 export function AppHeader(){
 
 
-    return <header className="app-header flex space-between">
+    return <header className="app-header flex space-between flex-center">
         <h3 className="logo">App<span>sus</span></h3> 
         <h3 className="selected-app">Gmail</h3>
         <div className="img-container"><img  src="assets/img/icons/apps-icon.png" alt="" /></div>

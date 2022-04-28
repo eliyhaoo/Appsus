@@ -1,41 +1,44 @@
 
-export class MailCompose extends React.Component{
+export class MailCompose extends React.Component {
 
-    state= {
-        email:{
+    state = {
+        email: {
 
         }
     }
 
-    onEmailSend(){
+    onEmailSend() {
 
     }
 
 
-    render(){
+    render() {
 
-        const {to,subject,body} = this.state
+        const { to, subject, body } = this.state
 
-        return(
+        return (
             <section className="mail-compose">
 
-                <header>New Message</header>
+                <header><span>New Message</span></header>
 
-                <form onSubmit={this.onEmailSend}>
+                <div className="info-container">
 
-                <label htmlFor="to">To</label>
-                <input type="email" id="to" name="to" value={to} />
+                    <form className="form-container flex column" onSubmit={this.onEmailSend}>
 
-                <label htmlFor="subject">Subject</label>
-                <input type="text" id="subject" name="subject" value={subject} />
-                <div className="body-area">
-                <label htmlFor="body"></label>
-                <textarea name="body" id="body" ></textarea>
+                        <label htmlFor="to">To</label>
+                        <input type="email" id="to" name="to" value={to} />
+
+                        <label htmlFor="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" value={subject} />
+                        <div className="body-area">
+                            <label htmlFor="body"></label>
+                            <textarea name="body" id="body" ></textarea>
+
+                        </div>
+
+                    </form>
 
                 </div>
-
-                </form>
-
             </section>
         )
     }

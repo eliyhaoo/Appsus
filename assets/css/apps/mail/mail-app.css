@@ -11,8 +11,8 @@
 .mails-container {
     background-color: inherit;
     flex-grow: 1;
-    border-inline-start: 1px solid var(--main-sub-text-color);
-   box-shadow: 7px 10px 7px 5px
+    /* border-inline-start: 1px solid var(--main-sub-text-color); */
+   /* box-shadow: 7px 10px 7px 5px */
     
    
 }
