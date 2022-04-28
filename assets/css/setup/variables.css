@@ -1,6 +1,6 @@
 :root {
     --main-bg-color: #f6f6f6;
-    --main-text-color: #222831;
+    --main-text-color: #202124
     --main-card-color: #A6E3E9;
     --secondary-bg-color: #CBF1F5;
     --secondary-text-color: #393E46;
@@ -9,5 +9,10 @@
     --main-shadow-color: rgba(0, 0, 0, 0.457);
     --main-hoover-color: rgba(87, 85, 85, 0.466);
     --main-active-color: rgba(87, 85, 85, 0.835);
-    --main-sub-text-color: rgb(136, 136, 136)
+    --main-sub-text-color: rgb(136, 136, 136);
+    
+    --inbox-hoover-color: #fadbd8;
+    --red-text-color: #db392f
+
+
 }

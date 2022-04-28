@@ -1,0 +1,10 @@
+
+.mail-compose {
+    height: 100%;
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.mail-compose header {
+    background-color:#202124 ;
+}

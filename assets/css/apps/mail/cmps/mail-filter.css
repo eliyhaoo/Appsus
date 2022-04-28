@@ -1,8 +1,8 @@
 .mail-filter{
     
-    width: 300px; 
+    min-width: 300px; 
     height: 100%;
-    font-size: 1.5rem;
+  
   
 }
 
@@ -12,9 +12,12 @@
    
 }
 .mail-filter .filter-options-container >* {
-    
-    padding:5px 15px;
-    /* background-color: whitesmoke; */
+    display: flex;
+    align-items: center;
+    height:32px;
+
+    padding:0 12px 0 26px;
+   
     border-radius: 0 1rem 1rem 0;
     margin-bottom: 0.2em;
     cursor: pointer;
@@ -25,7 +28,10 @@
 }
 .mail-filter .filter-options-container >*.active {
 
-   background-color: var(--main-active-color) ;
+   background-color: var(--inbox-hoover-color) ;
+   color:#db392f;
+   font-weight: 2000;
+   
 }
 
 .mail-filter button  {
