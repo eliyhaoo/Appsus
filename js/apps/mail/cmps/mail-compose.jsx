@@ -28,9 +28,11 @@ export class MailCompose extends React.Component{
 
                 <label htmlFor="subject">Subject</label>
                 <input type="text" id="subject" name="subject" value={subject} />
-
+                <div className="body-area">
                 <label htmlFor="body"></label>
-                <textarea name="body" id="body" cols="300" rows="50"></textarea>
+                <textarea name="body" id="body" ></textarea>
+
+                </div>
 
                 </form>
 

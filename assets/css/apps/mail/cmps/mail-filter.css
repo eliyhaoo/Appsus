@@ -2,5 +2,29 @@
     border-inline-end: 2px solid black;
     width: 300px; 
     height: 100%;
+    font-size: 1.5rem;
   
 }
+
+.mail-filter .filter-options-container  {
+    margin-inline-end: 0.5rem;
+    
+   
+}
+.mail-filter .filter-options-container >* {
+    
+    padding:5px 15px;
+    /* background-color: whitesmoke; */
+    border-radius: 0 1rem 1rem 0;
+    margin-bottom: 0.2em;
+    cursor: pointer;
+}
+.mail-filter .filter-options-container >*:hover {
+
+   background-color: var(--main-hoover-color) ;
+}
+.mail-filter .filter-options-container >*.active {
+
+   background-color: var(--main-active-color) ;
+}
+

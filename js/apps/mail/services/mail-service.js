@@ -6,7 +6,7 @@ export const mailService = {
 
     query,
     getEmailById,
-    deleteEmail
+    remove
 
 }
 
@@ -17,60 +17,100 @@ const loggedinUser = {
 }
 
 
-function query(filterby){
+function query(criteria) {
 
-    let emails = _loadFromStorage() 
+    let emails = _loadFromStorage()
 
-    if (!emails||!emails.length) {
+    if (!emails || !emails.length) {
         emails = _createEmails()
         _saveToStorage(emails)
+    }
+
+    if (criteria) {
+        let { status } = criteria
+        emails = emails.filter(email =>
+            status === "inbox" && !email.sentAt ||
+             status === 'sent' && email.sentAt)
     }
 
     return Promise.resolve(emails)
 
 }
 
-function getEmailById(emailId){
+function getEmailById(emailId) {
     const emails = _loadFromStorage()
     const email = emails.find(email => emailId === email.id)
     return Promise.resolve(email)
 }
 
-function deleteEmail(id){
-    let emails= _loadFromStorage()
-    emails =emails.filter(email=> email.id !== id)
+function remove(id) {
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => email.id !== id)
     _saveToStorage(emails)
     return Promise.resolve()
 
 }
 
 
-function updateEmail(id,key,val){
+function updateEmail(id, key, val) {
     console.log();
 }
 
 
 
 function _createEmails() {
-    return [_createEmail('Hi from Julie'),_createEmail('Welcome to AppSus'),
-    _createEmail('Hi from Julie'),_createEmail('Hi from Julie'),_createEmail('Hi from Julie'),_createEmail('Hi from Julie'),
-    _createEmail('Hi from Julie'),_createEmail('Hi from Julie'),_createEmail('Hi from Julie'),_createEmail('Hi from Julie')]
-
+    const test = [
+        _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
+        _createEmail('Hi from Julie', null, 'Julie@nJulie.com', 'Thank you for the help last year!'),
+        _createEmail('Introducing Shapes — Mapping user journeys just got easier', null, 'ZeplinCrew@nzepplinn.com', 'Earlier this year, we launched Flows to make building user flows easier. You told us you love the snap connectors and locked screens. This month, we made Flows even better! Now, you have the ability to show conditional flows, alternate branches, and actions in Zeplin. Read more about our April product updates, including: Shapes.'),
+        _createEmail('Hi from Julie', null, 'Julie@nJulie.com', 'Thank you for the help last year!'),
+        _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
+        _createEmail('[Update] Changes to the Google Cloud PlatformHi from Julie', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
+        _createEmail('Your account details', null, 'apple@apple.com', 'Introducing info on the go for our best clients, check out our newest website now'),
+        _createEmail('👀 Looking for something really special?', null, 'ebay@reply5.ebay.com', 'People like eBay for its unique selection  Be inspired by the treasures people find Discover it'),
+        _createEmail('Introducing Shapes — Mapping user journeys just got easier', null, 'ZeplinCrew@nzepplinn.com', 'Earlier this year, we launched Flows to make building user flows easier. You told us you love the snap connectors and locked screens. This month, we made Flows even better! Now, you have the ability to show conditional flows, alternate branches, and actions in Zeplin. Read more about our April product updates, including: Shapes.'),
+        _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
+        _createEmail('[Update] Changes to the Google Cloud PlatformHi from Julie', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
+        _createEmail('Sending you my love', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
+        _createSentEmail('Testing Emails', "shlomi@shlomit.com" ),
+        _createSentEmail('Testing Emails', "shlomi@shlomit.com" ),
+        _createSentEmail('Testing Emails', "shlomi@shlomit.com" ),
+    ]
+   
+    return test
 }
 
-function _createEmail(subject, body = 'Would love to catch up sometimes', to = 'momo@momo.com' ,from='yaronb@appsus.com') {
+function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love to catch up sometimes', to = 'yaronb@appsus.com') {
     return {
         id: utilService.makeId(5),
         subject,
         body,
         isRead: Math.random() > 0.2 ? false : true,
-        sentAt: Date.now() - (60 * 1000),
+        sentAt,
+        receivedAt: (Date.now() - (utilService.getRandomIntInclusive(500000, 500000000))),
         to,
         from,
-        isShowen:false
+        isShowen: false
     }
 
 }
+
+function _createSentEmail(subject, to,body = 'Would love to catch up sometimes' ) {
+    return {
+        id: utilService.makeId(5),
+        subject,
+        body,
+        isRead: Math.random() > 0.2 ? false : true,
+        sentAt:Date.now(),
+        receivedAt:null,
+        to,
+        from : 'yaronb@appsus.com',
+        isShowen: false
+    }
+
+}
+
+
 
 
 
