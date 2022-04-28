@@ -5,12 +5,6 @@ const { Link } = ReactRouterDOM
 export function BigPreview({email,onEmailClick}) {
 
 
-    function onDeleteEmail(id) {
-        console.log('deleteing from Preview');
-        eventBusService.emit('delete',id)
-
-    }
-
     const { subject, body, id, isRead, sentAt, from } = email
     // const sender = from.split('@').splice(0, 1).toString()
     // const shortSub = subject.length > 15 ? subject.substring(0, 15) : subject
@@ -21,7 +15,7 @@ export function BigPreview({email,onEmailClick}) {
 
         <section  key={id} className={`mail-big-preview flex column ${readClass}`} >
             <button onClick={()=>{onEmailClick(id,false)}}>CLOSE</button>
-            <button onClick={()=>{onDeleteEmail(id)}}>Delete</button>
+            <button onClick={()=>eventBusService.emit('delete',id)}>Delete</button>
              <Link to={`/mail/details/${id}`}> BIG</Link>
             <h4><span className="mail-tag">*</span> {subject}</h4>
             <small>{`<${from}>`}</small>

@@ -7,7 +7,7 @@ const { Link } = ReactRouterDOM
 export function MailPreview({ email, isShowen, onEmailClick }) {
     
 
-    const { subject, body, id, isRead, sentAt, from } = email
+    
     // const sender = from.split('@').splice(0, 1).toString()
     // const shortSub = subject.length > 15 ? subject.substring(0, 15) : subject
     // const text = body.substring(0, 10)
