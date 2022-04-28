@@ -3,6 +3,7 @@ import { MailFilter } from '../apps/mail/cmps/mail-filter.jsx'
 import { mailService } from '../apps/mail/services/mail-service.js'
 import { MailDetails } from '../apps/mail/cmps/mail-details.jsx'
 import { MailCompose } from '../apps/mail/cmps/mail-compose.jsx'
+import { MailHeader } from '../apps/mail/cmps/mail-header.jsx'
 import { eventBusService } from '../services/event-bus-service.js'
 
 const { Route, Switch } = ReactRouterDOM
@@ -17,7 +18,7 @@ export class MailApp extends React.Component {
 
         criteria: {
             status: 'inbox',
-            // txt: 'puki', // no need to support complex text search 
+            txt: '', // no need to support complex text search 
             // isRead: true, // (optional property, if missing: show all)
             // isStared: true, // (optional property, if missing: show all)
             // lables: ['important', 'romantic'], // has any of the labels }
@@ -38,7 +39,7 @@ export class MailApp extends React.Component {
 
     componentDidMount() {
         setTimeout(this.loadEmails, 1000)
-        this.removeEvent = eventBusService.on('delete', (emailId) => { this.DeleteEmail(emailId) })
+        this.removeEvent = eventBusService.on('delete', (emailId) => { this.moveToTrash(emailId) })
     }
 
     componentWillUnmount(){
@@ -54,21 +55,29 @@ export class MailApp extends React.Component {
     }
 
 
-    DeleteEmail=(emailId)=> {
-        mailService.remove(emailId)
+    moveToTrash=(emailId)=> {
+        mailService.trash(emailId)
             .then(this.loadEmails)
     }
+    // DeleteEmail=(emailId)=> {
+    //     mailService.remove(emailId)
+    //         .then(this.loadEmails)
+    // }
 
 
 
 
     render() {
         const { emails } = this.state
-        if (!this.state.emails.length) return <div className="loader"></div>
-        return <main className="mail-app flex">
-            <MailFilter onSetFilter={this.handleChange} />
-            <div className="mails-container">
+        const isEmailsExsist = emails.length ? true : false
+        return <section className="mail-app-container">
 
+            <MailHeader onSearch={this.handleChange}/>
+        <main className="mail-app flex">
+            <MailFilter onSetFilter={this.handleChange} />
+            
+            {(!isEmailsExsist) &&  <div className="loader"></div>}
+            {isEmailsExsist && <div className="mails-container">
                 <Switch>
                     <Route path="/mail/details/:emailId?" component={MailDetails} />
                     <Route path="/mail/compose" component={MailCompose} />
@@ -76,11 +85,9 @@ export class MailApp extends React.Component {
                 </Switch>
 
 
-            </div>
+            </div>}
 
         </main>
-
+        </section>
     }
-
-
 }

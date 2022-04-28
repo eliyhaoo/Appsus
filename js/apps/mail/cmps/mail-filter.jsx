@@ -4,7 +4,7 @@ const { Link } = ReactRouterDOM
 export function MailFilter({onSetFilter}) {
 
         return <section className="mail-filter">
-            <Link to="mail/compose" ><button>Compose</button></Link>
+            <Link to="mail/compose" ><button>+ Compose</button></Link>
             <div className="filter-options-container">
 
                 <div className="active" onClick={()=>onSetFilter('status','inbox')} >Inbox</div>

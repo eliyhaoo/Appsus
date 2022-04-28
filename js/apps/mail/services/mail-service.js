@@ -6,7 +6,8 @@ export const mailService = {
 
     query,
     getEmailById,
-    remove
+    remove,
+    trash,
 
 }
 
@@ -27,14 +28,39 @@ function query(criteria) {
     }
 
     if (criteria) {
-        let { status } = criteria
-        emails = emails.filter(email =>
-            status === "inbox" && !email.sentAt ||
-             status === 'sent' && email.sentAt)
+        let { status ,txt } = criteria
+        let searchedTerm = txt.toLowerCase()
+        console.log('cret',criteria);
+        console.log('email subject',emails[0].subject);
+        emails = emails.filter(email =>{
+            console.log('email in filter',email);
+            const check = email.subject.toLowerCase().includes(searchedTerm)
+            console.log('check',check);
+            return status === 'inbox' && !email.sentAt && !email.isInTrash ||
+            status === 'sent' && email.sentAt && !email.isInTrash ||
+            status === 'trash' && email.isInTrash
+        //    return check  
+        }   
+             ) 
+
+             console.log('emailsbefore ',emails);
+        emails = _filterByText(emails,searchedTerm)
+        console.log('emails',emails);
+
     }
+    console.log('emails',emails);
 
     return Promise.resolve(emails)
 
+}
+
+function _filterByText(emails,term){
+    return emails.filter(email=>
+        email.subject.toLowerCase().includes(term)||
+        email.body.toLowerCase().includes(term)||
+        email.from.split('@').splice(0, 1).toString().toLowerCase().includes(term)||
+        email.to.split('@').splice(0, 1).toString().toLowerCase().includes(term)
+        )
 }
 
 function getEmailById(emailId) {
@@ -49,6 +75,19 @@ function remove(id) {
     _saveToStorage(emails)
     return Promise.resolve()
 
+}
+
+function trash(id){
+    let emails = _loadFromStorage()
+    emails = emails.map(email => {
+        if (email.id === id ) {
+            const removedEmail  = email
+            removedEmail.isInTrash = true
+            return removedEmail
+        } return email 
+    })
+    _saveToStorage(emails)
+    return Promise.resolve()
 }
 
 
@@ -90,7 +129,8 @@ function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love t
         receivedAt: (Date.now() - (utilService.getRandomIntInclusive(500000, 500000000))),
         to,
         from,
-        isShowen: false
+        isShowen: false,
+        isInTrash: false
     }
 
 }
@@ -105,7 +145,8 @@ function _createSentEmail(subject, to,body = 'Would love to catch up sometimes' 
         receivedAt:null,
         to,
         from : 'yaronb@appsus.com',
-        isShowen: false
+        isShowen: false,
+        isInTrash: false
     }
 
 }
