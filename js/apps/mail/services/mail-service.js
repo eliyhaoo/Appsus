@@ -8,6 +8,7 @@ export const mailService = {
     getEmailById,
     remove,
     trash,
+    add,
 
 }
 
@@ -28,39 +29,26 @@ function query(criteria) {
     }
 
     if (criteria) {
-        let { status ,txt } = criteria
+        let { status, txt } = criteria
         let searchedTerm = txt.toLowerCase()
-        console.log('cret',criteria);
-        console.log('email subject',emails[0].subject);
-        emails = emails.filter(email =>{
-            console.log('email in filter',email);
-            const check = email.subject.toLowerCase().includes(searchedTerm)
-            console.log('check',check);
+        emails = emails.filter(email => {
+
             return status === 'inbox' && !email.sentAt && !email.isInTrash ||
-            status === 'sent' && email.sentAt && !email.isInTrash ||
-            status === 'trash' && email.isInTrash
-        //    return check  
-        }   
-             ) 
-
-             console.log('emailsbefore ',emails);
-        emails = _filterByText(emails,searchedTerm)
-        console.log('emails',emails);
-
+                status === 'sent' && email.sentAt && !email.isInTrash ||
+                status === 'trash' && email.isInTrash
+        })
+        emails = _filterByText(emails, searchedTerm)
     }
-    console.log('emails',emails);
-
     return Promise.resolve(emails)
-
 }
 
-function _filterByText(emails,term){
-    return emails.filter(email=>
-        email.subject.toLowerCase().includes(term)||
-        email.body.toLowerCase().includes(term)||
-        email.from.split('@').splice(0, 1).toString().toLowerCase().includes(term)||
+function _filterByText(emails, term) {
+    return emails.filter(email =>
+        email.subject.toLowerCase().includes(term) ||
+        email.body.toLowerCase().includes(term) ||
+        email.from.split('@').splice(0, 1).toString().toLowerCase().includes(term) ||
         email.to.split('@').splice(0, 1).toString().toLowerCase().includes(term)
-        )
+    )
 }
 
 function getEmailById(emailId) {
@@ -77,14 +65,23 @@ function remove(id) {
 
 }
 
-function trash(id){
+function add(emailDetails) {
+    const { subject, to, body } = emailDetails
+    const newEmail = _createSentEmail(subject, to, body)
+    let emails = _loadFromStorage()
+    emails.unshift(newEmail)
+    _saveToStorage(emails)
+    return Promise.resolve()
+}
+
+function trash(id) {
     let emails = _loadFromStorage()
     emails = emails.map(email => {
-        if (email.id === id ) {
-            const removedEmail  = email
+        if (email.id === id) {
+            const removedEmail = email
             removedEmail.isInTrash = true
             return removedEmail
-        } return email 
+        } return email
     })
     _saveToStorage(emails)
     return Promise.resolve()
@@ -111,11 +108,11 @@ function _createEmails() {
         _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
         _createEmail('[Update] Changes to the Google Cloud PlatformHi from Julie', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
         _createEmail('Sending you my love', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
-        _createSentEmail('Testing Emails', "shlomi@shlomit.com" ),
-        _createSentEmail('Testing Emails', "shlomi@shlomit.com" ),
-        _createSentEmail('Testing Emails', "shlomi@shlomit.com" ),
+        _createSentEmail('Testing Emails', "shlomi@shlomit.com"),
+        _createSentEmail('Testing Emails', "shlomi@shlomit.com"),
+        _createSentEmail('Testing Emails', "shlomi@shlomit.com"),
     ]
-   
+
     return test
 }
 
@@ -135,16 +132,16 @@ function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love t
 
 }
 
-function _createSentEmail(subject, to,body = 'Would love to catch up sometimes' ) {
+function _createSentEmail(subject, to, body = 'Would love to catch up sometimes') {
     return {
         id: utilService.makeId(5),
         subject,
         body,
         isRead: Math.random() > 0.2 ? false : true,
-        sentAt:Date.now(),
-        receivedAt:null,
+        sentAt: Date.now(),
+        receivedAt: null,
         to,
-        from : 'yaronb@appsus.com',
+        from: 'yaronb@appsus.com',
         isShowen: false,
         isInTrash: false
     }

@@ -26,3 +26,14 @@
 .grid {
     display: grid;
 }
+
+
+/* Font Awsome Helperes */
+
+.fa{
+    font-family: fa;
+}
+
+.fa.fa-trash::before{
+    content: "\f1f8" ;
+}

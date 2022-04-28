@@ -24,6 +24,9 @@
     align-items:center;
     overflow-x: hidden;
 }
+.mail-small-preview .mail-info >*{
+  font-family: roboto-regular;
+}
 .mail-small-preview .mail-info > :nth-child(1){
     align-self:center
 }

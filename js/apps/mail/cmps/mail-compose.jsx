@@ -1,14 +1,24 @@
-
+import { eventBusService } from "../../../services/event-bus-service.js"
 export class MailCompose extends React.Component {
 
     state = {
         email: {
-
+            to: '',
+            subject:'',
+            body:''
         }
     }
 
-    onEmailSend() {
+    handleChange=({target})=>{
+        const field = target.name
+        const value = target.value
+        this.setState((prevState)=>({email:{...prevState.email,[field]:value}}))
+    }
 
+    onSend=(ev) => {
+        ev.preventDefault()
+        eventBusService.emit('add',this.state.email)
+        console.log('email sent', this.state.email)
     }
 
 
@@ -19,23 +29,22 @@ export class MailCompose extends React.Component {
         return (
             <section className="mail-compose">
 
-                <header><span>New Message</span></header>
+                <header className="flex space-between"><span>New Message</span><button>X</button></header>
 
                 <div className="info-container">
 
-                    <form className="form-container flex column" onSubmit={this.onEmailSend}>
+                    <form className="form-container flex column" onSubmit={this.onSend}>
 
-                        <label htmlFor="to">To</label>
-                        <input type="email" id="to" name="to" value={to} />
+                        <input onChange={this.handleChange} type="email" id="to" name="to" value={to} placeholder="To:" required />
 
-                        <label htmlFor="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" value={subject} />
+                        <input onChange={this.handleChange} type="text" id="subject" name="subject" value={subject} placeholder="Subject" required />
+
+
                         <div className="body-area">
-                            <label htmlFor="body"></label>
-                            <textarea name="body" id="body" ></textarea>
-
+                            <textarea onChange={this.handleChange} name="body" id="body" required></textarea>
                         </div>
 
+                        <button>Send</button>
                     </form>
 
                 </div>

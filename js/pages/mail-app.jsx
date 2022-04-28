@@ -26,7 +26,22 @@ export class MailApp extends React.Component {
         }
 
     }
-    removeEvent
+    removeDeleteEvent
+    removeAddEvent
+
+  
+
+
+    componentDidMount() {
+        setTimeout(this.loadEmails, 1000)
+        this.removeDeleteEvent = eventBusService.on('delete', (emailId) => { this.moveToTrash(emailId) })
+        this.removeAddEvent = eventBusService.on('add', (emailId) => { this.sendToAdd(emailId) })
+    }
+
+    componentWillUnmount(){
+        this.removeDeleteEvent()
+        this.removeAddEvent()
+    }
 
     handleChange=(field,value)=>{
         console.log(field,value);
@@ -35,15 +50,14 @@ export class MailApp extends React.Component {
             console.log('state',this.state.criteria);
         })
     }
-
-
-    componentDidMount() {
-        setTimeout(this.loadEmails, 1000)
-        this.removeEvent = eventBusService.on('delete', (emailId) => { this.moveToTrash(emailId) })
-    }
-
-    componentWillUnmount(){
-        this.removeEvent()
+    
+    onSetFilter=(status)=>{
+        this.setState((prevState)=>({criteria:{...prevState.criteria,status}}),()=>{
+            const urlSrcPrm = new URLSearchParams(status)
+            const searchStr = urlSrcPrm.toString()
+            this.props.history.push(`/mail?${status}`)
+            this.loadEmails()
+        })
     }
 
     loadEmails = () => {
@@ -58,6 +72,16 @@ export class MailApp extends React.Component {
     moveToTrash=(emailId)=> {
         mailService.trash(emailId)
             .then(this.loadEmails)
+    }
+
+    sendToAdd=(email)=>{
+        console.log('emailrecvive SENT',email);
+        mailService.add(email)
+        .then(()=>{
+            this.props.history.push('/mail')
+            this.loadEmails()
+        })
+
     }
     // DeleteEmail=(emailId)=> {
     //     mailService.remove(emailId)
@@ -74,7 +98,7 @@ export class MailApp extends React.Component {
 
             <MailHeader onSearch={this.handleChange}/>
         <main className="mail-app flex">
-            <MailFilter onSetFilter={this.handleChange} />
+            <MailFilter onSetFilter={this.onSetFilter} />
             
             {(!isEmailsExsist) &&  <div className="loader"></div>}
             {isEmailsExsist && <div className="mails-container">

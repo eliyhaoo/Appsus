@@ -17,7 +17,7 @@ export function SmallPreview({email,onEmailClick}) {
             <span>{sender}</span>
             </div>
             
-            <div className="mail-info flex ">
+            <div className="mail-info flex fa fa-trash ">
                  <span>{shortSub}</span><small>{text}</small>
             </div>
 

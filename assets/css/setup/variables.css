@@ -7,6 +7,7 @@
 
     --secondary-bg-color: #f1f3f4;
     --secondary-text-color: #393E46;
+    --light-text-color: #b3b3b3;
     --secondary-card-color: #E3FDFD;
     --main-txt-shadow-color: #e3fdfd8f;
     --main-shadow-color: rgba(0, 0, 0, 0.457);
@@ -17,6 +18,7 @@
     --compose-header-color: #404040;
     --inbox-hoover-color: #fadbd8;
     --red-text-color: #db392f;
+    --send-button-color: #1a73e8;
     
 
 }

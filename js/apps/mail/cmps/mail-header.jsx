@@ -2,7 +2,15 @@
 export class MailHeader extends React.Component {
 
     state = {
-        txt: ''
+        txt: '',
+        criteria: {
+            status: 'inbox',
+            txt: '', // no need to support complex text search 
+            // isRead: true, // (optional property, if missing: show all)
+            // isStared: true, // (optional property, if missing: show all)
+            // lables: ['important', 'romantic'], // has any of the labels }
+
+        }
     }
 
     handleChange=({target:{value}})=>{
