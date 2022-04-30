@@ -1,19 +1,15 @@
 .keep-preview.flex {
+    page-break-inside: avoid;
     width: 100%;
-    background: #e1e1e1;
+    background-color: #fff;
     font-size: 1.25rem;
     border-radius: 7px;
     box-shadow: 0.5px 1px 0px #e0e0e0;
     transition: box-shadow 0.2s;
-    margin: 10px;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 10px;
+    /* justify-content: space-between;
+    align-items: center; */
     flex-direction: column;
-}
-
-.keep-preview .note {
-    /* margin-bottom: 1.5px;
-    width: 100% */
 }
 
 .keep-preview:hover {
@@ -22,7 +18,7 @@
 
 .keep-preview button.delete-btn {
     align-self: flex-end;
-    margin-right: 5px;
+    padding: 5px;
     border: none;
     border-radius: 7px;
     font-weight: 700;
@@ -35,4 +31,12 @@
 
 .keep-preview .note {
     flex-grow: 1;
+}
+
+.note h3 {
+    font-size: 1.125rem;
+}
+
+.delete-btn {
+    padding-top: 5px;
 }
