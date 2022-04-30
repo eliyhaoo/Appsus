@@ -3,6 +3,7 @@ import { NoteTodos } from './note-todos.jsx'
 import { NoteTxt } from './note-txt.jsx'
 import { DynamicCmp } from './dynamic-note-adder.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js'
+import { NoteVideo } from './note-video.jsx'
 export class KeepPreview extends React.Component {
         state = {
                 note: null
@@ -23,6 +24,7 @@ export class KeepPreview extends React.Component {
                         {note.type === 'note-txt' && <NoteTxt note={note} />}
                         {note.type === 'note-img' && <NoteImg note={note} />}
                         {note.type === 'note-todos' && <NoteTodos note={note} />}
+                        {note.type === 'note-todos' && <NoteVideo note={note} />}
                 </section>
         }
 }

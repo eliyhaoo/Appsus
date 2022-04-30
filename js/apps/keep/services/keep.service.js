@@ -1,5 +1,6 @@
 import { storageService } from '../../../storage-service.js'
 import { utilService } from '../../../services/util-service.js'
+import { demoService } from './keep.demo.service.js'
 
 export const keepService = {
     query,
@@ -9,12 +10,11 @@ export const keepService = {
 }
 
 const KEY = 'notesDB'
-const gNoteTypes = ['note-img', 'note-txt', 'note-todos'] // later implement , 'note-video'
 
 function query() {
     let notes = _loadFromStorage()
     if (!notes) {
-        notes = _createNotes()
+        notes = demoService.createDemoNotes(15)
         _saveToStorage(notes)
     }
     return Promise.resolve(notes)
@@ -33,33 +33,23 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function add({ type, txt }) {
-    console.log('hello from service', type, 'and txt', txt);
+function add({ type, note }) {
+
     let notes = _loadFromStorage()
-    const note = _createNote(type, txt)
-    notes = [note, ...notes]
+    const currNote = _createNote(type, note)
+    notes = [currNote, ...notes]
     _saveToStorage(notes)
     return Promise.resolve()
 
 }
 
-function _createNote(currType, txt = "Fullstack Me Baby!", url = `../../../../assets/img/${utilService.getRandomIntInclusive(1,6)}.jpg`) {
+function _createNote(currType, note) {
 
     switch (currType) {
         case 'note-txt':
-            return _createNoteTxt(txt)
+            return _createNoteTxt(note)
         case 'note-img':
-            return {
-                id: utilService.makeId(5),
-                type: "note-img",
-                info: {
-                    url, // try and make a function to get an image and title from a list of imgs 
-                    title: "Bobi and Me"
-                },
-                style: {
-                    backgroundColor: "#00d"
-                }
-            }
+            return _createNoteImg(note)
         case 'note-todos':
             return {
                 id: utilService.makeId(5),
@@ -71,13 +61,40 @@ function _createNote(currType, txt = "Fullstack Me Baby!", url = `../../../../as
                         { txt: "Coding power", doneAt: utilService.getFormatedTime(Date.now() - (60000 * 60)) }
                     ]
                 }
+
             }
 
     }
-
 }
 
-function _createNoteTxt(txt = "Fullstack Me Baby!") {
+// function _createNoteTodos({info}){
+//     const {txt, doneAt} = info
+//     const listItem = txt.split(',')
+//     const todoList = listItem.map(todo=> {
+//         return {
+//             txt: todo,
+//             doneAt: null
+//         }
+//     })
+//     return {
+//         id: utilService.makeId(5),
+//         type: "note-todos",
+//         info: {
+//             label: "Get my stuff together",
+//             todos: [
+//                 { txt: "Driving license", doneAt: null },
+//                 { txt: "Coding power", doneAt: utilService.getFormatedTime(Date.now() - (60000 * 60)) }
+//             ]
+//         }
+//     }
+// }
+
+
+
+
+
+function _createNoteTxt({ txt }) {
+    if (!txt) txt = 'Fun in the Sun!'
     return {
         id: utilService.makeId(5),
         type: "note-txt",
@@ -88,17 +105,21 @@ function _createNoteTxt(txt = "Fullstack Me Baby!") {
     }
 }
 
-function _createNotes() {
-    const notes = []
-    for (let i = 0; i < 10; i++) {
-        const type = gNoteTypes[utilService.getRandomIntInclusive(0, gNoteTypes.length - 1)]
-            // const type = gNoteTypes[1]
-        notes.push(_createNote(type))
+function _createNoteImg({ title, url }) {
+    if (!title) title = "Awesome Pic"
+    if (!url) url = `../../../../assets/img/${utilService.getRandomIntInclusive(1,6)}.jpg`
+    return {
+        id: utilService.makeId(5),
+        type: "note-img",
+        info: {
+            url, // try and make a function to get an image and title from a list of imgs 
+            title,
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
     }
-    return notes
 }
-
-
 
 function _saveToStorage(notes) {
     storageService.saveToStorage(KEY, notes)

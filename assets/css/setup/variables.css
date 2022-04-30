@@ -1,24 +1,21 @@
 :root {
+    /* EMAIL APP  */
     --main-bg-color: #FFFFFF;
     --main-text-color: #222831;
     --main-border-color: rgb(100 121 143 / 12%);
-
     --main-card-color: #A6E3E9;
-
     --secondary-bg-color: #f1f3f4;
     --secondary-text-color: #393E46;
     --light-text-color: #b3b3b3;
     --secondary-card-color: #E3FDFD;
     --main-txt-shadow-color: #e3fdfd8f;
     --main-shadow-color: rgba(0, 0, 0, 0.457);
-    --main-hoover-color:rgba(87, 85, 85, 0.466);
+    --main-hoover-color: rgba(87, 85, 85, 0.466);
     --main-active-color: rgba(87, 85, 85, 0.835);
     --main-sub-text-color: rgb(136, 136, 136);
-    
     --compose-header-color: #404040;
     --inbox-hoover-color: #fadbd8;
     --red-text-color: #db392f;
     --send-button-color: #1a73e8;
-    
-
+    /* KEPP APP  */
 }

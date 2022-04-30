@@ -3,43 +3,49 @@ import { eventBusService } from "../../../services/event-bus-service.js"
 import { DynamicNoteAdder } from "./dynamic-note-adder.jsx"
 
 export class AddNote extends React.Component {
-
+    
     state = {
-        inputType: 'note-txt',
-        note: {
-            txt: {
-                type: 'note-txt',
-                createdAt: Date.now(),
-                info: {
-                    txt: ''
-                }
-            },
-            img: {
-                type: 'note-img',
-                createdAt: Date.now(),
-                info: {
-                    url: '',
-                    title: ''
-                }
-            },
-            todos: {
-                type: 'note-todos',
-                info: {
-                    label: "Get my stuff together",
-                    todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
-                    ]
-                }
-            },
-            video:{
-                type: 'note-video',
-                info:{
-                    url:''
-                }
-            }
-        }
+        inputType: 'note-txt'
     }
+
+    // state = {
+    //     inputType: 'note-txt',
+    //     note: {
+    //         txt: {
+    //             type: 'note-txt',
+    //             createdAt: Date.now(),
+    //             info: {
+    //                 txt: ''
+    //             }
+    //         },
+    //         img: {
+    //             type: 'note-img',
+    //             createdAt: Date.now(),
+    //             info: {
+    //                 url: '',
+    //                 title: ''
+    //             }
+    //         },
+    //         todos: {
+    //             type: 'note-todos',
+    //             info: {
+    //                 label: "Get my stuff together",
+    //                 todos: [
+    //                     { txt: "Driving liscence", doneAt: null },
+    //                     { txt: "Coding power", doneAt: 187111111 }
+    //                 ]
+    //             }
+    //         },
+    //         video:{
+    //             type: 'note-video',
+    //             info:{
+    //                 url:''
+    //             }
+    //         }
+    //     }
+    // }
+
+
     get keyName(){
         const {inputType} = this.state
         if(inputType === 'note-txt') return 'txt'
@@ -60,8 +66,8 @@ export class AddNote extends React.Component {
     
     onSubmit = (ev) => {
         ev.preventDefault()
-        const value = this.inputRef.current.value
-        console.log(value);
+        
+        console.dir(ev.target.input.value);
         // const { txt } = this.state.note.info
         // const { type } = this.state.note
         // this.props.add({ type, txt })
@@ -79,19 +85,16 @@ export class AddNote extends React.Component {
         
         
         render() {
-            const { note, inputType } = this.state
-            if(!note) return <React.Fragment></React.Fragment>  
+            const {  inputType } = this.state
+            // if(!note) return <React.Fragment></React.Fragment>  
         //  console.log('note txt from add note', note.txt.info.txt);    
         return <section className="add-note">
             <form onSubmit={this.onSubmit}>
-                <DynamicNoteAdder keyName={this.keyName} note={note} type={inputType} handleChange={this.handleChange} />
+                <DynamicNoteAdder add={this.props.add} keyName={this.keyName}  type={inputType} handleChange={this.handleChange} />
                 {/* <input type="text" name="txt" placeholder="Take a note..." value={note.info.txt} onChange={this.handleChange} /> */}
-
-
-
-                <button>+</button>
-
+                {/* <button className="add-btn">+</button> */}
             </form>
+
             <button className="on-note-txt" name="note-txt" onClick={this.handleTypeChange}>txt</button>
             <button className="on-note-txt" name="note-img" onClick={this.handleTypeChange}>img</button>
             <button className="on-note-txt" name="note-video" onClick={this.handleTypeChange}>video</button>
