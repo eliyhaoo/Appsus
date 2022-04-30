@@ -4,10 +4,10 @@ import {SmallPreview} from "../cmps/small-preview.jsx"
 
 const { Link } = ReactRouterDOM
 
-export function MailPreview({ email, isShowen, onEmailClick }) {
+export function MailPreview({ email, isShowen, onEmailClick ,status, onDelete }) {
    return (
 
-        <DynamicPreview isShowen={isShowen} email={email} onEmailClick={onEmailClick}/>
+        <DynamicPreview status={status} isShowen={isShowen} email={email} onEmailClick={onEmailClick} onDelete={onDelete} />
 
     // <Link to={`/mail/details/${id}`}>
 )    // </Link>

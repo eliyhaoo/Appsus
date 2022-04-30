@@ -15,7 +15,7 @@ export function BigPreview({email,onEmailClick}) {
 
         <section  key={id} className={`mail-big-preview flex column ${readClass}`} >
             <button onClick={()=>{onEmailClick(id,false)}}>CLOSE</button>
-            <button onClick={()=>eventBusService.emit('delete',id)}>Delete</button>
+            <button onClick={()=>eventBusService.emit('trash',id)}>Delete</button>
              <Link to={`/mail/details/${id}`}> BIG</Link>
             <h4><span className="mail-tag">*</span> {subject}</h4>
             <small>{`<${from}>`}</small>

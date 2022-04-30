@@ -15,11 +15,12 @@ export class MailApp extends React.Component {
     state = {
 
         emails: [],
-
+        mailsCount:{read:0,total:0},
         criteria: {
             status: 'inbox',
             txt: '', // no need to support complex text search 
-            // isRead: true, // (optional property, if missing: show all)
+            filter: 'all', // (optional property, if missing: show all)
+            // isRead: 'all', // (optional property, if missing: show all)
             // isStared: true, // (optional property, if missing: show all)
             // lables: ['important', 'romantic'], // has any of the labels }
 
@@ -34,8 +35,10 @@ export class MailApp extends React.Component {
 
     componentDidMount() {
         setTimeout(this.loadEmails, 1000)
-        this.removeDeleteEvent = eventBusService.on('delete', (emailId) => { this.moveToTrash(emailId) })
+        this.removeDeleteEvent = eventBusService.on('trash', (emailId) => { this.moveToTrash(emailId) })
         this.removeAddEvent = eventBusService.on('add', (emailId) => { this.sendToAdd(emailId) })
+        this.removeAddEvent = eventBusService.on('delete', (emailId) => { this.DeleteEmail(emailId) })
+        
     }
 
     componentWillUnmount(){
@@ -44,11 +47,31 @@ export class MailApp extends React.Component {
     }
 
     handleChange=(field,value)=>{
-        console.log(field,value);
+       
         this.setState((prevState)=>({criteria: {...prevState.criteria,[field]:value} }),()=>{
             this.loadEmails()
-            console.log('state',this.state.criteria);
+          
         })
+    }
+
+    onSearch=({txt,filter})=>{
+      
+        this.handleChange('txt',txt)
+        this.handleChange('filter',filter)
+       
+        
+    }
+
+    setEmailsCount=()=>{
+        const {emails} = this.state
+        let read =0
+        let total= 0
+         emails.forEach(email=>{
+            if (!email.isRead) read++
+            total++
+        })
+        this.setState({mailsCount:{read,total}})
+        
     }
     
     onSetFilter=(status)=>{
@@ -63,8 +86,10 @@ export class MailApp extends React.Component {
     loadEmails = () => {
         mailService.query(this.state.criteria)
             .then(emails => this.setState({ emails }, () => {
-                eventBusService.emit('onLoadEmails', emails)
-
+                const mailsToDisplay = {emails,status:this.state.criteria.status}
+                eventBusService.emit('onLoadEmails', mailsToDisplay)
+                this.setEmailsCount()
+                console.log('LOADING EMAILS STATE',this.state);
             }))
     }
 
@@ -83,22 +108,23 @@ export class MailApp extends React.Component {
         })
 
     }
-    // DeleteEmail=(emailId)=> {
-    //     mailService.remove(emailId)
-    //         .then(this.loadEmails)
-    // }
+
+    DeleteEmail=(emailId)=> {
+        mailService.remove(emailId)
+            .then(this.loadEmails)
+    }
 
 
 
 
     render() {
-        const { emails } = this.state
+        const { emails ,mailsCount} = this.state
         const isEmailsExsist = emails.length ? true : false
         return <section className="mail-app-container">
 
-            <MailHeader onSearch={this.handleChange}/>
+            <MailHeader onSearch={this.onSearch}/>
         <main className="mail-app flex">
-            <MailFilter onSetFilter={this.onSetFilter} />
+            <MailFilter count={mailsCount} onSetFilter={this.onSetFilter} />
             
             {(!isEmailsExsist) &&  <div className="loader"></div>}
             {isEmailsExsist && <div className="mails-container">
