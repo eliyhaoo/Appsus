@@ -16,6 +16,7 @@ export class MailApp extends React.Component {
 
         emails: [],
         mailsCount:{read:0,total:0},
+        isMenuOpen: false,
         criteria: {
             status: 'inbox',
             txt: '', // no need to support complex text search 
@@ -38,6 +39,8 @@ export class MailApp extends React.Component {
         this.removeDeleteEvent = eventBusService.on('trash', (emailId) => { this.moveToTrash(emailId) })
         this.removeAddEvent = eventBusService.on('add', (emailId) => { this.sendToAdd(emailId) })
         this.removeAddEvent = eventBusService.on('delete', (emailId) => { this.DeleteEmail(emailId) })
+        this.removeAddEvent = eventBusService.on('read-toggle', (emailId) => { this.readToggle(emailId) })
+        this.removeAddEvent = eventBusService.on('star-toggle', (emailId) => { this.starToggle(emailId) })
         
     }
 
@@ -55,11 +58,8 @@ export class MailApp extends React.Component {
     }
 
     onSearch=({txt,filter})=>{
-      
         this.handleChange('txt',txt)
-        this.handleChange('filter',filter)
-       
-        
+        this.handleChange('filter',filter) 
     }
 
     setEmailsCount=()=>{
@@ -93,10 +93,26 @@ export class MailApp extends React.Component {
             }))
     }
 
+    readToggle(emailId){
+        mailService.readToggle(emailId)
+        .then(this.loadEmails)
+    }
+
+    starToggle(emailId){
+        console.log('TOGGLE ', emailId);
+        mailService.starToggle(emailId)
+        .then(this.loadEmails)
+    }
 
     moveToTrash=(emailId)=> {
         mailService.trash(emailId)
             .then(this.loadEmails)
+    }
+
+    onToggleMenu=()=>{
+        console.log('got it babe');
+        this.setState({isMenuOpen:!this.state.isMenuOpen})
+
     }
 
     sendToAdd=(email)=>{
@@ -118,13 +134,13 @@ export class MailApp extends React.Component {
 
 
     render() {
-        const { emails ,mailsCount} = this.state
+        const { emails ,mailsCount ,criteria,isMenuOpen} = this.state
         const isEmailsExsist = emails.length ? true : false
         return <section className="mail-app-container">
 
             <MailHeader onSearch={this.onSearch}/>
         <main className="mail-app flex">
-            <MailFilter count={mailsCount} onSetFilter={this.onSetFilter} />
+            <MailFilter isMenuOpen={isMenuOpen} toggleMenu={this.onToggleMenu} count={mailsCount} status={criteria.status} onSetFilter={this.onSetFilter} />
             
             {(!isEmailsExsist) &&  <div className="loader"></div>}
             {isEmailsExsist && <div className="mails-container">

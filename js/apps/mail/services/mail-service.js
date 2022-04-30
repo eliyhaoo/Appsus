@@ -9,7 +9,9 @@ export const mailService = {
     remove,
     trash,
     add,
-    updateEmail
+    updateEmail,
+    readToggle,
+    starToggle
 
 }
 
@@ -49,20 +51,6 @@ function query(criteria) {
     return Promise.resolve(emails)
 }
 
-function _filterByText(emails, term) {
-    return emails.filter(email =>
-        email.subject.toLowerCase().includes(term) ||
-        email.body.toLowerCase().includes(term) ||
-        email.from.split('@').splice(0, 1).toString().toLowerCase().includes(term) ||
-        email.to.split('@').splice(0, 1).toString().toLowerCase().includes(term)
-    )
-}
-
-function _filterRead(emails,isRead){
-    return emails.filter(email=> email.isRead === isRead)
-    
-}
-
 
 function getEmailById(emailId) {
     const emails = _loadFromStorage()
@@ -75,7 +63,7 @@ function remove(id) {
     emails = emails.filter(email => email.id !== id)
     _saveToStorage(emails)
     return Promise.resolve()
-
+    
 }
 
 function add(emailDetails) {
@@ -100,12 +88,59 @@ function trash(id) {
     return Promise.resolve()
 }
 
+function readToggle(id){
+    console.log('id',id);
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => {
+       if (email.id === id){
+           const updatedMail = email
+           updatedMail.isRead = !updatedMail.isRead
+           return updatedMail
+       }
+       return email
+    })
+   
+    _saveToStorage(emails)
+    return Promise.resolve()
+    
+}
+
+function starToggle(id){
+    let emails = _loadFromStorage()
+    emails = emails.filter(email => {
+       if (email.id === id){
+           const updatedMail = email
+           updatedMail.isStar = !updatedMail.isStar
+           return updatedMail
+       }
+       return email
+    })
+   
+    _saveToStorage(emails)
+    return Promise.resolve()
+    
+}
+
 
 function updateEmail(updatedMail) {
     let emails= _loadFromStorage()
     emails =emails.map(email => email.id === updatedMail.id ? updatedMail : email)
     _saveToStorage(emails)
     return Promise.resolve()
+}
+
+function _filterByText(emails, term) {
+    return emails.filter(email =>
+        email.subject.toLowerCase().includes(term) ||
+        email.body.toLowerCase().includes(term) ||
+        email.from.split('@').splice(0, 1).toString().toLowerCase().includes(term) ||
+        email.to.split('@').splice(0, 1).toString().toLowerCase().includes(term)
+    )
+}
+
+function _filterRead(emails,isRead){
+    return emails.filter(email=> email.isRead === isRead)
+    
 }
 
 
@@ -143,7 +178,8 @@ function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love t
         to,
         from,
         isShowen: false,
-        isInTrash: false
+        isInTrash: false,
+        isStar: false
     }
 
 }
@@ -159,7 +195,8 @@ function _createSentEmail(subject, to, body = 'Would love to catch up sometimes'
         to,
         from: 'yaronb@appsus.com',
         isShowen: false,
-        isInTrash: false
+        isInTrash: false,
+        isStar: false
     }
 
 }

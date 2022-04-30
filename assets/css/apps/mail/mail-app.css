@@ -16,3 +16,10 @@
     
    
 }
+
+@media  (max-width: 860px) {
+   .mail-app-container .mail-app {
+      flex-direction: column;
+   }
+   
+}

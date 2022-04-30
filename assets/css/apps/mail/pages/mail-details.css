@@ -1,0 +1,18 @@
+
+.mail-details {
+    min-height: 707px;
+    margin: 28px 20px 8px 72px
+}
+.mail-details .sender-info {
+   margin-top: 20px;
+   margin-bottom:20px;
+}
+.mail-details .sender-info h4{
+   font-family: roboto-bold;
+   margin-inline-end:5px;
+}
+.mail-details .sender-info .date{
+    color: var(--main-sub-text-color);
+    letter-spacing: .3px;
+    word-spacing: 5px;
+}

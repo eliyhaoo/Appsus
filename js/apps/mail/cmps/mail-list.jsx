@@ -42,9 +42,7 @@ export class MailList extends React.Component {
         })
     }
 
-    onDelete(emailId){
-        
-    }
+    
 
     render(){
 
