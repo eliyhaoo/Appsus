@@ -102,14 +102,22 @@
         margin:0;
     }
     .mail-filter .mail-nav-bar::after {
-        content:"☰";
-        margin-inline-start: 40px;
+    content:"☰";
+       
+        cursor: pointer;
+    }
+    .mail-filter .mail-nav-bar {
+    
+        margin-inline-start: 24px;
+        margin-bottom:20px;
+        cursor: pointer;
     }
 
+
     .mail-filter .filter-options-container{
-        position: absolute;
-        bottom: 0;
-        left:0;
+        
+        /* bottom: 0;
+        left:0; */
         width: 100%;
         max-height: 0;
         overflow: hidden;
@@ -118,6 +126,13 @@
 
     .mail-filter .filter-options-container.open-menu {
         max-height: 100vh;
+    }
+
+    .mail-filter .compose-btn-container{
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+    
     }
     
    
