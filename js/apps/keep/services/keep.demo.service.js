@@ -3,9 +3,10 @@ import { utilService } from '../../../services/util-service.js'
 export const demoService = {
     createDemoNotes
 }
+const gColors = ['', '#f28b82', '#fbbc04', ' #fff475', '#d7aefb', '#e8eaed', '#a7ffeb']
 
 const gImgCount = 6
-const gNoteTypes = ['note-img', 'note-txt', 'note-todos'] // after getting API add: 'note-video'
+const gNoteTypes = ['note-img', 'note-txt', 'note-todos'] // after getting API add: 'note-video' //! Didn't manage to get around to getting an API... 
 
 function createDemoNotes(num = 10) {
     const notes = []
@@ -37,6 +38,9 @@ function _createNoteTxt() {
         isPinned: Math.random() > 0.2 ? false : true,
         info: {
             txt: utilService.makeLorem(8)
+        },
+        style: {
+            backgroundColor: _getRandomIdx(gColors)
         }
     }
 }
@@ -50,7 +54,7 @@ function _createNoteImg() {
             title: ''
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: _getRandomIdx(gColors)
         }
     }
 }
@@ -68,14 +72,17 @@ function _getImgUrls() {
         'https://images.pexels.com/photos/7463099/pexels-photo-7463099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         'https://images.pexels.com/photos/11689684/pexels-photo-11689684.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
     ]
-    return imgUrls[utilService.getRandomIntInclusive(0, imgUrls.length - 1)]
+    return _getRandomIdx(imgUrls)
 }
 
 function _createNoteTodos() {
     return {
         id: utilService.makeId(),
         type: 'note-todos',
-        info: _getTodos()
+        info: _getTodos(),
+        style: {
+            backgroundColor: _getRandomIdx(gColors)
+        }
     }
 }
 
@@ -137,14 +144,17 @@ function _getTodos() {
             ]
         },
     ]
-    return todos[utilService.getRandomIntInclusive(0, todos.length - 1)]
+    return _getRandomIdx(todos)
 }
 
 function _createNoteVideo() {
     return {
         id: utilService.makeId(),
         type: 'note-video',
-        info: _getVideoUrl()
+        info: _getVideoUrl(),
+        style: {
+            backgroundColor: _getRandomIdx(gColors)
+        }
     }
 }
 
@@ -156,5 +166,10 @@ function _getVideoUrl() {
         { url: 'IJ8i49EqgYI' },
         { url: 'hjpF8ukSrvk' }
     ]
-    return videoUrls[utilService.getRandomIntInclusive(0, videoUrls.length - 1)]
+    return _getRandomIdx(gColors)
+}
+
+//? I am super proud of this Function! so simple and elegant... gave me goosebumps
+function _getRandomIdx(arr) {
+    return arr[utilService.getRandomIntInclusive(0, arr.length - 1)]
 }

@@ -4,7 +4,7 @@
     background-color: #fff;
     font-size: 1.25rem;
     border-radius: 7px;
-    box-shadow: 0.5px 1px 0px #e0e0e0;
+    box-shadow: 0.5px 1px 0px 1.2px #e0e0e0;
     transition: box-shadow 0.2s;
     margin-bottom: 10px;
     /* justify-content: space-between;
@@ -13,7 +13,7 @@
 }
 
 .keep-preview:hover {
-    box-shadow: 0.5px 1px 0px 1.4px #e0e0e0;
+    box-shadow: 0.5px 1px 0px 2px #e0e0e0;
 }
 
 .keep-preview button.delete-btn {
@@ -25,7 +25,7 @@
     background-color: transparent;
 }
 
-.keep-preview button.delete-btn:hover {
+.keep-preview button.btn:hover {
     cursor: pointer;
 }
 
@@ -40,3 +40,34 @@
 .delete-btn {
     padding-top: 5px;
 }
+
+.control-box .btn {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+}
+
+.control-box>*:not(:last-child) {
+    margin-inline-end: 5px;
+}
+
+.bg-color-btn {
+    background-color: transparent;
+    background-image: url('../../../../img/icons/colorpalette_icon.png');
+    background-repeat: round;
+    /* color: rgb(28, 25, 25); */
+}
+
+.control-box {
+    height: 10%;
+    width: 100%;
+    justify-content: flex-end;
+    padding: 5px;
+    /* opacity: 0;
+    transition: opacity 0.3s; */
+}
+
+
+/* .control-box:hover {
+    opacity: 1;
+} */

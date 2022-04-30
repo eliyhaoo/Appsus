@@ -1,30 +1,72 @@
 import { NoteImg } from './note-img.jsx'
 import { NoteTodos } from './note-todos.jsx'
 import { NoteTxt } from './note-txt.jsx'
-import { DynamicCmp } from './dynamic-note-adder.jsx'
 import { eventBusService } from '../../../services/event-bus-service.js'
 import { NoteVideo } from './note-video.jsx'
+import { BgColorInput } from '../dynamic-inputs/bg-color-input.jsx'
 export class KeepPreview extends React.Component {
         state = {
-                note: null
+                note: null,
+               
+                bgColorSelector: {
+                        isShown: false
+                }
         }
 
         componentDidMount() {
                 this.setState({ note: this.props.note })
+               
         }
-        
-        
+    
+        handleStyleChange = (field, value) => {
+                const {type} = this.state.note
+                const {note} = this.state
+        this.setState((prevState) => ({note: {...prevState.note, style:{[field]: value}} }) ,() => {
+                this.props.save(type,note)
+                console.log(note.style);
+                
+        })
+                
+                
+        }
+        togglePalette = () => {
+                
+                let { isShown } = this.state.bgColorSelector
+                this.setState(()=> ({bgColorSelector: {isShown: !isShown} }))
+               
 
+        }
         render() {
                 const { note } = this.state
-                if (!note) return <React.Fragment></React.Fragment>
                 
-                return <section className={`keep-preview flex ${note.type}`} >
-                        {note.type === 'note-txt' && <NoteTxt note={note} />}
+                const { isShown } = this.state.bgColorSelector
+                if (!note) return <React.Fragment></React.Fragment>
+                const { style } = this.state.note
+                return <section style={style} className={`keep-preview flex ${note.type}`} >
+                        <DynamicNoteCmp note={note} />
+                        {/* {note.type === 'note-txt' && <NoteTxt note={note}  />}
                         {note.type === 'note-img' && <NoteImg note={note} />}
                         {note.type === 'note-todos' && <NoteTodos note={note} />}
-                        {note.type === 'note-video' && <NoteVideo note={note} />}
-                        <button className="delete-btn" onClick={()=>{eventBusService.emit('delete', note.id)}}  >X</button>
+                        {note.type === 'note-video' && <NoteVideo note={note} />} */}
+                        <div className="control-box flex">
+                        <button className="btn bg-color-btn" onClick={ this.togglePalette} ></button>
+                        <button className="btn delete-btn" onClick={() => { eventBusService.emit('delete', note.id) }}  >X</button>
+                        </div>
+                        {isShown && <BgColorInput handleStyleChange={this.handleStyleChange} />}
                 </section>
+        }
+}
+
+
+function DynamicNoteCmp(props) {
+        switch (props.note.type) {
+                case 'note-txt':
+                        return <NoteTxt {...props} />
+                case 'note-img':
+                        return <NoteImg {...props} />
+                case 'note-todos':
+                        return <NoteTodos {...props} />
+                case 'note-video':
+                        return <NoteVideo {...props} />
         }
 }

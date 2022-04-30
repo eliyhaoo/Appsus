@@ -6,7 +6,7 @@ export const keepService = {
     query,
     getById,
     remove,
-    add
+    saveNote
 }
 
 const KEY = 'notesDB'
@@ -14,7 +14,7 @@ const KEY = 'notesDB'
 function query() {
     let notes = _loadFromStorage()
     if (!notes) {
-        notes = demoService.createDemoNotes(15)
+        notes = demoService.createDemoNotes(30)
         _saveToStorage(notes)
     }
     return Promise.resolve(notes)
@@ -33,7 +33,20 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function add(type, note) {
+function saveNote(type, note) {
+    if (note.id) return _update(note)
+    else return _add(type, note)
+}
+
+function _update(noteToUpdate) {
+    let notes = _loadFromStorage()
+    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
+    _saveToStorage(notes)
+    return Promise.resolve()
+
+}
+
+function _add(type, note) {
 
     let notes = _loadFromStorage()
     const currNote = _createNote(type, note)
@@ -66,6 +79,9 @@ function _createNoteTodos(note) {
         info: {
             label: note.title,
             todos: _getTodos(note.txt)
+        },
+        style: {
+            backgroundColor: ''
         }
     }
 }
@@ -89,6 +105,9 @@ function _createNoteTxt(note) {
         isPinned: false,
         info: {
             txt: note.txt
+        },
+        style: {
+            backgroundColor: ''
         }
     }
 }
@@ -103,7 +122,7 @@ function _createNoteVideo(note) {
             title: note.title,
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: ''
         }
     }
 }
@@ -123,7 +142,7 @@ function _createNoteImg(note) {
             title: note.title,
         },
         style: {
-            backgroundColor: "#00d"
+            backgroundColor: ''
         }
     }
 }

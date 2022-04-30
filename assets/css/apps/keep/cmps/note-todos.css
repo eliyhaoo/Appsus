@@ -13,3 +13,7 @@ section.keep-preview.flex.note-todos {
 section.keep-preview.flex.note-todos .note-title {
     padding-left: 10px;
 }
+
+.note-todos {
+    padding-top: 5px;
+}

@@ -1,5 +1,6 @@
 .add-note {
     margin: 10px auto;
+    align-items: center;
 }
 
 .add-note input {
@@ -7,14 +8,53 @@
     padding: 0 20px;
 }
 
-.add-note form button {
+.add-note button {
     text-decoration: none;
     border: none;
-    font-size: 1.2em;
     background-color: transparent;
 }
 
+.add-note>button.btn {
+    margin-inline-start: 5px;
+}
+
 .add-note:hover {
-    cursor: pointer;
     box-shadow: outset 2px 2px 0 rgb(0 0 0 / 10%);
+}
+
+.add-btn {
+    text-transform: capitalize;
+}
+
+.add-btn,
+.btn:hover {
+    cursor: pointer;
+}
+
+button.btn.txt-selector {
+    width: 25px;
+    height: 20px;
+    background-repeat: round;
+    background-image: url('../../../../img/icons/text-input-icon.png');
+}
+
+button.btn.img-selector {
+    width: 30px;
+    height: 25px;
+    background-repeat: round;
+    background-image: url('../../../../img/icons/img-icon.png');
+}
+
+button.btn.video-selector {
+    width: 30px;
+    height: 25px;
+    background-repeat: round;
+    background-image: url('../../../../img/icons/video-icon.png');
+}
+
+button.btn.todos-selector {
+    width: 30px;
+    height: 25px;
+    background-repeat: round;
+    background-image: url('../../../../img/icons/todo_list.png');
 }
