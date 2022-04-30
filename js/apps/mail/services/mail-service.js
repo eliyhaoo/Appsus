@@ -33,15 +33,17 @@ function query(criteria) {
         console.log('creit',criteria);
         let { status, txt ,filter} = criteria
         emails = emails.filter(email => {
-            console.log('email enter', email);
-            return ((status === 'inbox' && !email.sentAt && !email.isInTrash) ||
-            (status === 'sent' && email.sentAt && !email.isInTrash) ||
-            (status === 'trash' && email.isInTrash)) && filter === 'all'|| email.isRead === filter
+            return status === 'inbox' && !email.sentAt && !email.isInTrash ||
+            status === 'sent' && email.sentAt && !email.isInTrash ||
+            status === 'trash' && email.isInTrash 
             
         })
         if (txt){
             let searchedTerm = txt.toLowerCase()
             emails = _filterByText(emails, searchedTerm)
+        }
+        if (filter !== 'all'){
+           emails = _filterRead(emails,filter)
         }
     }
     return Promise.resolve(emails)
@@ -54,6 +56,11 @@ function _filterByText(emails, term) {
         email.from.split('@').splice(0, 1).toString().toLowerCase().includes(term) ||
         email.to.split('@').splice(0, 1).toString().toLowerCase().includes(term)
     )
+}
+
+function _filterRead(emails,isRead){
+    return emails.filter(email=> email.isRead === isRead)
+    
 }
 
 
