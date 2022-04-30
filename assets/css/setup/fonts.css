@@ -40,3 +40,7 @@
     font-family: fa;
     src: url('../../fonts/awsome/fa-v4compatibility.ttf');
 }
+@font-face {
+    font-family: fas;
+    src: url('../../fonts/awsome/fa-solid-900.ttf');
+}

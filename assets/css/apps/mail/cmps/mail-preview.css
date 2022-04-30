@@ -4,17 +4,45 @@
     box-shadow: inset 0 -1px 0 0 var(--main-border-color);  
     transition: all 0.2s;
     cursor: pointer;
+    min-height: 40px;
 }
 .mail-small-preview.read {
     font-family: roboto-bold;
 }
-.mail-small-preview:hover {
 
+.mail-small-preview .dynamic-container {
+   max-width: 40px;
+   max-height: 1.2em;
+   overflow: hidden;
+}
+.mail-small-preview .dynamic-container .btns-hover >*:hover {
+   background-color: lightgrey;
+   border: 1px lightgrey solid;
+   border-radius: 50%;
+ 
+}
+.mail-small-preview .dynamic-container .btns-hover >* {
+   padding:2px
+}
+
+.mail-small-preview .dynamic-container .btns-hover {
+    display:none;
+    z-index: 99;
+    width: 100px;
+    gap:5px
+ 
+}
+.mail-small-preview:hover .dynamic-container > .btns-hover{
+    display: flex;
+   
+}
+
+
+.mail-small-preview:hover {
     box-shadow: inset 1px 0 0 rgb(255 255 255 / 20%),
     inset -1px 0 0 rgb(255 255 255 / 20%), 
     0 0 4px 0 rgb(95 99 104 / 60%), 
-    0 0 6px 2px rgb(95 99 104 / 60%);
-      
+    0 0 6px 2px rgb(95 99 104 / 60%);     
 }
 .mail-small-preview .preview-start{
     gap: 1em;
@@ -26,17 +54,19 @@
     align-items:center;
     overflow-x: hidden;
 }
-/* .mail-small-preview .mail-info >*{
-  font-family: roboto-regular;
-} */
+
 .mail-small-preview .mail-info > :nth-child(1){
     align-self:center
 }
-.mail-small-preview .mail-info > :nth-child(2){
-    /* margin-inline-start: 0.5rem;   */
-    color: var(--main-sub-text-color)
 
+.mail-small-preview .preview-start .unstar::before{
+    content: url(https://www.gstatic.com/images/icons/material/system/1x/star_border_black_20dp.png);
+ 
 }
+.mail-small-preview .preview-start .star::before{
+    content: url(https://www.gstatic.com/images/icons/material/system/1x/star_googyellow500_20dp.png);
+}
+
 
 .mail-big-preview {
 
@@ -46,4 +76,18 @@
     gap:1.2rem; 
     
     transition: all 0.4s
+}
+
+.mail-big-preview .btns-container {
+    width: 40px;  
+}
+.mail-big-preview .btns-container > * {
+    cursor: pointer;
+    
+}
+.mail-big-preview .sender-container{
+     gap: 5px
+}
+.mail-big-preview .sender-container h4{
+    font-family: roboto-bold;
 }

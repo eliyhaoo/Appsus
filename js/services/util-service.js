@@ -8,7 +8,8 @@ export const utilService = {
     getMonthName,
     getCurrDate,
     debounce,
-    getFormatedTime
+    getFormatedTime,
+    getFormatedDate,
 }
 
 
@@ -82,7 +83,15 @@ function getCurrDate(timeStamp = Date.now()) {
     const year = currDate.getFullYear()
     const month = currDate.getMonth() + 1
     const day = currDate.getDate()
-    return year + '-' + padNum(month) + '-' + day
+    return year + '-' + padNum(month) + '-' + day 
+}
+
+function getFormatedDate(timeStamp){
+    const currDate = new Date(timeStamp)
+    const year = currDate.getFullYear()
+    const month = currDate.toLocaleString('default', { month: 'short' })
+    const day = currDate.getDate()
+    return  month + ' ' + day +','+ year +','+ getFormatedTime(timeStamp)
 }
 
 function getFormatedTime(timeStamp) {

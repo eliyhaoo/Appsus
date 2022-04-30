@@ -1,23 +1,18 @@
-.mail-filter{
-    
-    min-width: 300px; 
-    height: 100%;
-  
-  
+.mail-filter{  
+    min-width: 256px; 
+    height: 100%; 
 }
 
 .mail-filter .filter-options-container  {
-    margin-inline-end: 0.5rem;
-    
-   
+    margin-inline-end: 0.5rem;  
+    color:var(--main-sub-text-color)
 }
 .mail-filter .filter-options-container >* {
     display: flex;
+    gap: 18px;
     align-items: center;
     height:32px;
-
-    padding:0 12px 0 26px;
-   
+    padding:0 12px 0 34px;
     border-radius: 0 1rem 1rem 0;
     margin-bottom: 0.2em;
     cursor: pointer;
@@ -26,19 +21,27 @@
 
    background-color: var(--main-hoover-color) ;
 }
-.mail-filter .filter-options-container >*.active {
-
+.mail-filter .filter-options-container >*.inbox-active {
+   font-family: roboto-bold; 
    background-color: var(--inbox-hoover-color) ;
-   color:#db392f;
-   
+   color:#db392f; 
+}
+.mail-filter .filter-options-container >.active {
+   font-family: roboto-bold; 
+   background-color:var(--main-active-color)
    
 }
 
-.mail-filter button  {
+.mail-filter .compose-btn-container{
+    margin: 16px 0 16px;
+    padding: 0 0 0 8px;
+}
+
+.mail-filter .btn  {
     /* border:none; */
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
-    margin-inline-start: 1em;
-    margin-bottom: 1em;
+    /* margin-inline-start: 1em; */
+    /* margin-bottom: 1em; */
     padding: 0 24px 0 15px;
     font-size: .875rem;
     letter-spacing: .25px;
@@ -47,13 +50,76 @@
     color:#3c4043;
     font-weight: 500;
     height: 48px;
+    width: 144px;
     overflow: hidden;
     cursor: pointer; 
+    transition: all 0.4s;
+}
+.mail-filter .btn:hover {
+    box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%);
+    background-color: #fafafb
+}
+.mail-filter .btn .comp-img {
+    width:56px;
+    padding: 10px
 }
 .mail-filter button:hover  {
     background-color: #3c4043;
     color:#fff;
-
-    
-    
 }
+
+.mail-filter .filter-options-container .inbox.inbox-active::before {
+    content:url(https://www.gstatic.com/images/icons/material/system/1x/inbox_gm_googlered600_20dp.png);
+   
+}
+.mail-filter .filter-options-container .inbox::before {
+    content:url(https://www.gstatic.com/images/icons/material/system/1x/inbox_gm_googlered600_20dp.png);
+}
+
+.mail-filter .filter-options-container .sent::before {
+    content: url(https://www.gstatic.com/images/icons/material/system/1x/send_black_20dp.png);
+
+}
+.mail-filter .filter-options-container .stared::before {
+    content: url(https://www.gstatic.com/images/icons/material/system/1x/grade_black_20dp.png);
+ 
+}
+.mail-filter .filter-options-container .trash::before {
+    content: url(https://www.gstatic.com/images/icons/material/system/1x/delete_black_20dp.png);
+ 
+}
+.mail-filter .filter-options-container .draft::before {
+    content: url(https://www.gstatic.com/images/icons/material/system/1x/insert_drive_file_black_20dp.png);
+  ;
+}
+
+
+@media  (max-width: 860px) {
+    
+    .mail-filter {
+        position:relative;
+        max-height: 320px;
+        margin:0;
+    }
+    .mail-filter .mail-nav-bar::after {
+        content:"☰";
+        margin-inline-start: 40px;
+    }
+
+    .mail-filter .filter-options-container{
+        position: absolute;
+        bottom: 0;
+        left:0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.8s;
+    }
+
+    .mail-filter .filter-options-container.open-menu {
+        max-height: 100vh;
+    }
+    
+   
+    
+ }

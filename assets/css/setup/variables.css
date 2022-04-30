@@ -10,9 +10,10 @@
     --secondary-card-color: #E3FDFD;
     --main-txt-shadow-color: #e3fdfd8f;
     --main-shadow-color: rgba(0, 0, 0, 0.457);
-    --main-hoover-color: rgba(87, 85, 85, 0.466);
-    --main-active-color: rgba(87, 85, 85, 0.835);
-    --main-sub-text-color: rgb(136, 136, 136);
+    --main-hoover-color: #e7eaed73;
+    --main-active-color: #e7eaed;
+    --main-sub-text-color: #5f6368;
+    /* --main-sub-text-color: rgb(136, 136, 136); */
     --compose-header-color: #404040;
     --inbox-hoover-color: #fadbd8;
     --red-text-color: #db392f;

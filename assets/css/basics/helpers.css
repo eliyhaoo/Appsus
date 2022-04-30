@@ -38,7 +38,21 @@
 .fa{
     font-family: fa;
 }
+.fas {
+    font-family: fas
+}
 
 .fa.fa-trash::before{
     content: "\f1f8" ;
 }
+
+.fas.fa-expand::before{
+    content: "\f065" ;
+}
+.fas.fa-envelope-open::before{
+    content: "\f2b6" ;
+}
+.fas.fa-envelope-close::before{
+    content: "\e4e8" ;
+}
+

@@ -41,6 +41,6 @@ img {
     object-fit: cover;
 }
 
-button {
-    border: 0;
+small {
+    color: var(--main-sub-text-color)
 }
