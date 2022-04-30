@@ -3,8 +3,8 @@
 }
 
 .previews-container {
-    column-count: 6;
-    gap: .5rem;
+    /* column-count: 6;
+    gap: .5rem; */
     /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-rows: 200px;
     gap: 10px; */

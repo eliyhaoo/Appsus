@@ -23,11 +23,11 @@ export class KeepApp extends React.Component {
             .then(this.loadNotes)
     }
 
-    onAddNote = ( note) => {
-        console.log('note in onaddnote', note);
+    onAddNote = (type,note) => {
+        
         // console.log('this the log we need', ev);
         // ev.preventDefault()
-        keepService.add(note)
+        keepService.add(type,note)
             .then(this.loadNotes)
     }
 
@@ -53,12 +53,13 @@ export class KeepApp extends React.Component {
     }
 
     render() {
-        if (!this.notesToDisplay) return <React.Fragment></React.Fragment>
+        const {notes} = this.state
+        if (!notes) return <React.Fragment></React.Fragment>
         return <section className="keep-app flex column">
             <AddNote add={this.onAddNote} />
          
          
-            <KeepList notes={this.state.notes} />
+            <KeepList notes={notes} />
            
         </section>
     }

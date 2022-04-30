@@ -1,15 +1,21 @@
+import { AddNoteTxt } from "../dynamic-inputs/add-note-txt.jsx"
+import { AddNoteImg } from "../dynamic-inputs/add-note-img.jsx"
+import { AddNoteTodos } from "../dynamic-inputs/add-note-todos.jsx"
+import { AddNoteVideo } from "../dynamic-inputs/add-note-video.jsx"
 
+export function DynamicNoteAdder(props) {
 
-export function DynamicNoteAdder({ note }) {
-
-    switch (note.type) {
+    switch (props.type) {
         case 'note-txt':
-            return <NoteTxt note={note} />
+            return <AddNoteTxt {...props} />
 
         case 'note-img':
-            return <NoteImg note={note} />
+            return <AddNoteImg {...props} />
 
         case 'note-todos':
-            return <NoteTodos note={note} />
+            return <AddNoteTodos {...props} />
+        
+        case 'note-video':
+            return <AddNoteVideo {...props}/>
     }
 }
