@@ -3,19 +3,14 @@ export class MailHeader extends React.Component {
 
     state = {
         txt: '',
-        criteria: {
-            status: 'inbox',
-            txt: '', // no need to support complex text search 
-            // isRead: true, // (optional property, if missing: show all)
-            // isStared: true, // (optional property, if missing: show all)
-            // lables: ['important', 'romantic'], // has any of the labels }
-
-        }
+        filter: 'all'
     }
 
-    handleChange=({target:{value}})=>{
-        this.setState({txt:value},()=>{ 
-            this.props.onSearch('txt',this.state.txt)
+    handleChange=({target})=>{
+        const field = target.name
+        const value = target.type !== 'select-one' ? target.value: target.value === 'true' ? true: target.value === 'false' ? false :target.value
+        this.setState((prevState)=>({...prevState,[field]:value}),()=>{ 
+            this.props.onSearch(this.state)
         })
         
     }
@@ -29,7 +24,12 @@ export class MailHeader extends React.Component {
 
             <form onSubmit={this.onSearchEmail} className="mail-search-container">
             
-            <input onChange={this.handleChange} type="search" name="search" id="search" value={txt} placeholder="Search Mail"/>
+            <input onChange={this.handleChange} name="txt" type="search"  value={txt} placeholder="Search Mail"/>
+            <select onChange={this.handleChange} name="filter" >
+                <option value="all">All</option>
+                <option value={true}>Read</option>
+                <option value={false}>Unread</option>
+            </select>
             
             </form>
         </header>

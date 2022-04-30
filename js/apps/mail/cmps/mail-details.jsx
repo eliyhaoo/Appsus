@@ -22,10 +22,8 @@ export class MailDetails extends React.Component {
     }
 
     deleteEmail(id){
-        console.log('deleteing');
-        eventBusService.emit('delete',id)
+        eventBusService.emit('trash',id)
         this.props.history.push('/mail')
-
     }
 
 

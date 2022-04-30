@@ -9,6 +9,7 @@ export const mailService = {
     remove,
     trash,
     add,
+    updateEmail
 
 }
 
@@ -29,15 +30,21 @@ function query(criteria) {
     }
 
     if (criteria) {
-        let { status, txt } = criteria
-        let searchedTerm = txt.toLowerCase()
+        console.log('creit',criteria);
+        let { status, txt ,filter} = criteria
         emails = emails.filter(email => {
-
             return status === 'inbox' && !email.sentAt && !email.isInTrash ||
-                status === 'sent' && email.sentAt && !email.isInTrash ||
-                status === 'trash' && email.isInTrash
+            status === 'sent' && email.sentAt && !email.isInTrash ||
+            status === 'trash' && email.isInTrash 
+            
         })
-        emails = _filterByText(emails, searchedTerm)
+        if (txt){
+            let searchedTerm = txt.toLowerCase()
+            emails = _filterByText(emails, searchedTerm)
+        }
+        if (filter !== 'all'){
+           emails = _filterRead(emails,filter)
+        }
     }
     return Promise.resolve(emails)
 }
@@ -50,6 +57,12 @@ function _filterByText(emails, term) {
         email.to.split('@').splice(0, 1).toString().toLowerCase().includes(term)
     )
 }
+
+function _filterRead(emails,isRead){
+    return emails.filter(email=> email.isRead === isRead)
+    
+}
+
 
 function getEmailById(emailId) {
     const emails = _loadFromStorage()
@@ -88,8 +101,11 @@ function trash(id) {
 }
 
 
-function updateEmail(id, key, val) {
-    console.log();
+function updateEmail(updatedMail) {
+    let emails= _loadFromStorage()
+    emails =emails.map(email => email.id === updatedMail.id ? updatedMail : email)
+    _saveToStorage(emails)
+    return Promise.resolve()
 }
 
 
