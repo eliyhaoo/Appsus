@@ -33,7 +33,7 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function add({ type, note }) {
+function add(type, note) {
 
     let notes = _loadFromStorage()
     const currNote = _createNote(type, note)
@@ -50,70 +50,77 @@ function _createNote(currType, note) {
             return _createNoteTxt(note)
         case 'note-img':
             return _createNoteImg(note)
+        case 'note-video':
+            return _createNoteVideo(note)
         case 'note-todos':
-            return {
-                id: utilService.makeId(5),
-                type: "note-todos",
-                info: {
-                    label: "Get my stuff together",
-                    todos: [
-                        { txt: "Driving license", doneAt: null },
-                        { txt: "Coding power", doneAt: utilService.getFormatedTime(Date.now() - (60000 * 60)) }
-                    ]
-                }
-
-            }
+            return _createNoteTodos(note)
 
     }
 }
 
-// function _createNoteTodos({info}){
-//     const {txt, doneAt} = info
-//     const listItem = txt.split(',')
-//     const todoList = listItem.map(todo=> {
-//         return {
-//             txt: todo,
-//             doneAt: null
-//         }
-//     })
-//     return {
-//         id: utilService.makeId(5),
-//         type: "note-todos",
-//         info: {
-//             label: "Get my stuff together",
-//             todos: [
-//                 { txt: "Driving license", doneAt: null },
-//                 { txt: "Coding power", doneAt: utilService.getFormatedTime(Date.now() - (60000 * 60)) }
-//             ]
-//         }
-//     }
-// }
+function _createNoteTodos(note) {
 
+    return {
+        id: utilService.makeId(5),
+        type: "note-todos",
+        info: {
+            label: note.title,
+            todos: _getTodos(note.txt)
+        }
+    }
+}
 
+function _getTodos(txt) {
 
+    const listItem = txt.split(',')
+    return listItem.map(todo => {
+        return {
+            txt: todo,
+            doneAt: null
+        }
+    })
+}
 
+function _createNoteTxt(note) {
 
-function _createNoteTxt({ txt }) {
-    if (!txt) txt = 'Fun in the Sun!'
     return {
         id: utilService.makeId(5),
         type: "note-txt",
         isPinned: false,
         info: {
-            txt
+            txt: note.txt
         }
     }
 }
 
-function _createNoteImg({ title, url }) {
-    if (!title) title = "Awesome Pic"
-    if (!url) url = `../../../../assets/img/${utilService.getRandomIntInclusive(1,6)}.jpg`
+function _createNoteVideo(note) {
+
+    return {
+        id: utilService.makeId(5),
+        type: "note-video",
+        info: {
+            url: _getVideoId(note.url),
+            title: note.title,
+        },
+        style: {
+            backgroundColor: "#00d"
+        }
+    }
+}
+
+function _getVideoId(url) {
+    let splitUrl = url.split('=')
+    return splitUrl[1]
+}
+
+function _createNoteImg(note) {
+    // if (!note.url) note.url = `../../../../assets/img/${utilService.getRandomIntInclusive(1,6)}.jpg`
     return {
         id: utilService.makeId(5),
         type: "note-img",
         info: {
-            url, // try and make a function to get an image and title from a list of imgs 
-            title,
+            url: note.url, // try and make a function to get an image and title from a list of imgs 
+            title: note.title,
         },
         style: {
             backgroundColor: "#00d"

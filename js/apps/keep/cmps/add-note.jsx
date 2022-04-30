@@ -67,7 +67,7 @@ export class AddNote extends React.Component {
     onSubmit = (ev) => {
         ev.preventDefault()
         
-        console.dir(ev.target.input.value);
+        
         // const { txt } = this.state.note.info
         // const { type } = this.state.note
         // this.props.add({ type, txt })
@@ -89,11 +89,11 @@ export class AddNote extends React.Component {
             // if(!note) return <React.Fragment></React.Fragment>  
         //  console.log('note txt from add note', note.txt.info.txt);    
         return <section className="add-note">
-            <form onSubmit={this.onSubmit}>
+            {/* <form onSubmit={this.onSubmit}> */}
                 <DynamicNoteAdder add={this.props.add} keyName={this.keyName}  type={inputType} handleChange={this.handleChange} />
                 {/* <input type="text" name="txt" placeholder="Take a note..." value={note.info.txt} onChange={this.handleChange} /> */}
                 {/* <button className="add-btn">+</button> */}
-            </form>
+            {/* </form> */}
 
             <button className="on-note-txt" name="note-txt" onClick={this.handleTypeChange}>txt</button>
             <button className="on-note-txt" name="note-img" onClick={this.handleTypeChange}>img</button>

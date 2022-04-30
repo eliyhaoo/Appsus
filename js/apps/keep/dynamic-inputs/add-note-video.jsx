@@ -1,32 +1,41 @@
 
 
 
-export class AddNoteVideo extends React.Component{ 
+export class AddNoteVideo extends React.Component {
 
     state = {
-        note:{
-            info:{
-                url: ''
-            }
+        note: {
+            title: '',
+            url: ''
+
         }
     }
-    
-   
-    handleChange = ({ target }) => {
-        const field = target.name
+
+
+    handleVideoChange = ({ target }) => {
         const value = target.value
-        
-        this.setState((prevState) => ({ note: {...prevState.note, note:{ info: value } } }))
-        
+        const field = target.name
+        this.setState((prevState) => ({ ...prevState.note, note: { [field]: value } }))
     }
-    
-    render(){
-        const {note,keyName} = this.props
-        if(!note) return <React.Fragment></React.Fragment>
-        const {url} = this.state.note.info
-         
+    reset = () => {
+        this.setState({ note: { url: '' } })
+        this.setState({ note: { title: '' } })
+    }
+
+    render() {
+
+        // if (!note) return <React.Fragment></React.Fragment>
+
+        const { url } = this.state.note
+        const { note } = this.state
+        const { type } = this.props
         return <section className="add-note-video">
-        <input type="text"  name={keyName} value={url} placeholder="Input video URL..." />
-    </section>
+            {/* //! DONT FORGET TO ADD A DYNAMIC NAME CHANGER TO THE INPUT NAME ATTRIBUTE  */}
+            <input type="text" placeholder="Enter video URL" name="url" value={url} onChange={this.handleVideoChange} />
+            <button className="add-btn" onClick={() => {
+                this.props.add(type, note)
+                this.reset()
+            }} >add</button>
+        </section>
     }
 }

@@ -5,7 +5,7 @@ export const demoService = {
 }
 
 const gImgCount = 6
-const gNoteTypes = ['note-img', 'note-txt', 'note-todos', 'note-video']
+const gNoteTypes = ['note-img', 'note-txt', 'note-todos'] // after getting API add: 'note-video'
 
 function createDemoNotes(num = 10) {
     const notes = []
@@ -134,11 +134,11 @@ function _createNoteVideo() {
 
 function _getVideoUrl() {
     const videoUrls = [
-        { url: 'https://youtu.be/Br3KkvgMAZY' },
-        { url: 'https://youtu.be/wELOA2U7FPQ' },
-        { url: 'https://youtu.be/6hzrDeceEKc' },
-        { url: 'https://youtu.be/IJ8i49EqgYI' },
-        { url: 'https://youtu.be/hjpF8ukSrvk' }
+        { url: 'Br3KkvgMAZY' },
+        { url: 'wELOA2U7FPQ' },
+        { url: '6hzrDeceEKc' },
+        { url: 'IJ8i49EqgYI' },
+        { url: 'hjpF8ukSrvk' }
     ]
     return videoUrls[utilService.getRandomIntInclusive(0, videoUrls.length - 1)]
 }

@@ -24,7 +24,7 @@ export class KeepPreview extends React.Component {
                         {note.type === 'note-txt' && <NoteTxt note={note} />}
                         {note.type === 'note-img' && <NoteImg note={note} />}
                         {note.type === 'note-todos' && <NoteTodos note={note} />}
-                        {note.type === 'note-todos' && <NoteVideo note={note} />}
+                        {note.type === 'note-video' && <NoteVideo note={note} />}
                 </section>
         }
 }
