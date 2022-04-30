@@ -46,13 +46,29 @@ function _createNoteImg() {
         id: utilService.makeId(),
         type: 'note-img',
         info: {
-            url: `../../../../assets/img/${utilService.getRandomIntInclusive(1,gImgCount)}.jpg`,
+            url: _getImgUrls(),
             title: ''
         },
         style: {
             backgroundColor: '#00d'
         }
     }
+}
+
+function _getImgUrls() {
+    const imgUrls = [
+        'https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg',
+        'https://images.pexels.com/photos/10931575/pexels-photo-10931575.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/11446968/pexels-photo-11446968.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/11395820/pexels-photo-11395820.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/4460483/pexels-photo-4460483.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/5206261/pexels-photo-5206261.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/6481652/pexels-photo-6481652.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/10990037/pexels-photo-10990037.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/7463099/pexels-photo-7463099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/11689684/pexels-photo-11689684.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    ]
+    return imgUrls[utilService.getRandomIntInclusive(0, imgUrls.length - 1)]
 }
 
 function _createNoteTodos() {

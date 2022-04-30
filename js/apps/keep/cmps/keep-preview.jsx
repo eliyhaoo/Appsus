@@ -20,11 +20,11 @@ export class KeepPreview extends React.Component {
                 if (!note) return <React.Fragment></React.Fragment>
                 
                 return <section className={`keep-preview flex ${note.type}`} >
-                        <button className="delete-btn" onClick={()=>{eventBusService.emit('trash', note.id)}}  >X</button>
                         {note.type === 'note-txt' && <NoteTxt note={note} />}
                         {note.type === 'note-img' && <NoteImg note={note} />}
                         {note.type === 'note-todos' && <NoteTodos note={note} />}
                         {note.type === 'note-video' && <NoteVideo note={note} />}
+                        <button className="delete-btn" onClick={()=>{eventBusService.emit('delete', note.id)}}  >X</button>
                 </section>
         }
 }

@@ -14,7 +14,7 @@ export function Apps() {
     return <Router>
         <AppHeader />
        
-        <section className="main-route-container flex">
+        <section className="main-route-container">
             <Switch>
                 {/* <Route path="/book" component={BookApp} /> */}
                 <Route path="/keep" component={KeepApp} />
@@ -23,6 +23,6 @@ export function Apps() {
                 <Route path="/" component={Home} />
             </Switch>
         </section>
-        <AppFooter/>
+        {/* <AppFooter/> */}
     </Router>
 }
