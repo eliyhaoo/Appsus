@@ -194,7 +194,7 @@ function _createEmails() {
     return test
 }
 
-function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love to catch up sometimes', to = this.loggedinUser.email) {
+function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love to catch up sometimes' ) {
     return {
         id: utilService.makeId(5),
         subject,
@@ -202,7 +202,7 @@ function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love t
         isRead: Math.random() > 0.2 ? false : true,
         sentAt,
         receivedAt: (Date.now() - (utilService.getRandomIntInclusive(500000, 500000000))),
-        to,
+        to:loggedinUser.email,
         from,
         isShowen: false,
         isInTrash: false,
@@ -220,7 +220,7 @@ function _createSentEmail(subject, to, body = 'Would love to catch up sometimes'
         sentAt: Date.now(),
         receivedAt: null,
         to,
-        from: this.loggedinUser.email,
+        from: loggedinUser.email,
         isShowen: false,
         isInTrash: false,
         isStar: false
