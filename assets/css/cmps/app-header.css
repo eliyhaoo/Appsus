@@ -2,6 +2,14 @@
     padding: 5px 20px 5px 20px;
 }
 
+.app-header .logo-container{
+    gap: 5px
+}
+.app-header .logo-container .selected-app{
+    align-self: flex-end;
+    margin-bottom: 4px;
+}
+
 .logo {
     padding-left: 11px;
     font-family: 'source-code';
@@ -40,6 +48,7 @@
     width: 48px;
     display: flex;
     align-items: center;
+    padding-top:5px
 }
 
 .app-header .nav-bar {
