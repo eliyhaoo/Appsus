@@ -6,11 +6,9 @@ export class AddNoteVideo extends React.Component {
     state = {
         note: {
             title: '',
-            url: ''
-
+            url: ''    
         }
     }
-
 
     handleVideoChange = ({ target }) => {
         const value = target.value
@@ -29,13 +27,13 @@ export class AddNoteVideo extends React.Component {
         const { url } = this.state.note
         const { note } = this.state
         const { type } = this.props
-        return <section className="add-note-video">
+        return <section className="note-adder add-note-video">
             {/* //! DONT FORGET TO ADD A DYNAMIC NAME CHANGER TO THE INPUT NAME ATTRIBUTE  */}
             <input type="text" placeholder="Enter video URL" name="url" value={url} onChange={this.handleVideoChange} />
             <button className="add-btn" onClick={() => {
                 this.props.add(type, note)
                 this.reset()
-            }} >add</button>
+            }} ></button>
         </section>
     }
 }

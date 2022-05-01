@@ -31,14 +31,14 @@ export class AddNoteTodos extends React.Component {
         const { note } = this.state
         const { type } = this.props
         
-        return <section className="add-note-txt" >
-            {/* //! DONT FORGET TO ADD A DYNAMIC NAME CHANGER TO THE INPUT NAME ATTRIBUTE  */}
+        return <section className="note-adder add-note-txt" >
+          
             {/* //TODO Later, add another input for the title. the "list" can be added in a textarea tag */}
             <input type="text" name="txt" placeholder="Enter a comma separated list..." value={txt} onChange={this.handleTodosChange} />
             <button className="add-btn" onClick={() => {
                 this.props.add(type, note)
                 this.reset()
-            }} >add</button>
+            }} ></button>
         </section>
     }
 

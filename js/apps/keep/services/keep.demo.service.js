@@ -6,7 +6,7 @@ export const demoService = {
 const gColors = ['', '#f28b82', '#fbbc04', ' #fff475', '#d7aefb', '#e8eaed', '#a7ffeb']
 
 const gImgCount = 6
-const gNoteTypes = ['note-img', 'note-txt', 'note-todos'] // after getting API add: 'note-video' //! Didn't manage to get around to getting an API... 
+const gNoteTypes = ['note-img', 'note-txt', 'note-todos', 'note-video'] // after getting API add:  //! Didn't manage to get around to getting an API... 
 
 function createDemoNotes(num = 10) {
     const notes = []
@@ -70,7 +70,15 @@ function _getImgUrls() {
         'https://images.pexels.com/photos/6481652/pexels-photo-6481652.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         'https://images.pexels.com/photos/10990037/pexels-photo-10990037.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         'https://images.pexels.com/photos/7463099/pexels-photo-7463099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        'https://images.pexels.com/photos/11689684/pexels-photo-11689684.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        'https://images.pexels.com/photos/11689684/pexels-photo-11689684.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/9821104/pexels-photo-9821104.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/11054377/pexels-photo-11054377.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/7544626/pexels-photo-7544626.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/7633182/pexels-photo-7633182.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        'https://images.pexels.com/photos/11629663/pexels-photo-11629663.png?auto=compress&cs=tinysrgb&dpr=1&w=500',
+
+
+
     ]
     return _getRandomIdx(imgUrls)
 }
@@ -160,16 +168,19 @@ function _createNoteVideo() {
 
 function _getVideoUrl() {
     const videoUrls = [
-        { url: 'Br3KkvgMAZY' },
-        { url: 'wELOA2U7FPQ' },
-        { url: '6hzrDeceEKc' },
-        { url: 'IJ8i49EqgYI' },
-        { url: 'hjpF8ukSrvk' }
+        { url: 'https://www.youtube.com/embed/4-43lLKaqBQ' },
+        { url: 'https://www.youtube.com/embed/IXdNnw99-Ic' },
+        { url: 'https://www.youtube.com/embed/WPni755-Krg' },
+        { url: 'https://www.youtube.com/embed/jXZAbnn1kTU' },
+        { url: 'https://www.youtube.com/embed/sjkrrmBnpGE' },
+        { url: 'https://www.youtube.com/embed/rPJiE-S0tdg' },
+        { url: 'https://www.youtube.com/embed/u2EQduP24GE' },
+        { url: 'https://www.youtube.com/embed/-7jjo8UICjQ' },
+        { url: 'https://www.youtube.com/embed/3dSouucdo0w' },
     ]
-    return _getRandomIdx(gColors)
+    return _getRandomIdx(videoUrls)
 }
 
-//? I am super proud of this Function! so simple and elegant... gave me goosebumps
 function _getRandomIdx(arr) {
     return arr[utilService.getRandomIntInclusive(0, arr.length - 1)]
 }

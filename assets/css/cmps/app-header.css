@@ -5,12 +5,17 @@
    
 }
 
-.app-header .img-container{
-    width: 35px 
+.nav-bar {
+    width: 75px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .app-header 
 
 .app-header .chk{
     display:none;
+}
+.active {
+    text-decoration: underline 2px rgb(77, 75, 75);
 }

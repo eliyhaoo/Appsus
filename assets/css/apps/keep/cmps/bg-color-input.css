@@ -14,18 +14,20 @@
 
 .bg-item {
     margin-left: 2.5px;
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    border-radius: 10%;
+    border: 0.5px solid rgb(92, 86, 86);
+    opacity: 0.6;
 }
 
 .bg-item:hover {
     /* box-shadow: 1x 1px 1px #474545 */
     border: 0.5px solid black;
     cursor: pointer;
+    opacity: 1;
 }
 
-.bg-item:first-of-type {
-    background-repeat: round;
-    background-image: url('../../../../img/icons/color_palette_icon_outline.png');
+.items-container>.btn {
+    background-color: transparent;
 }

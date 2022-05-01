@@ -25,13 +25,13 @@ export class AddNoteImg extends React.Component {
         const { note } = this.state
         const { type } = this.props
         
-        return <section className="add-note-img" >
-      {/* //! DONT FORGET TO ADD A DYNAMIC NAME CHANGER TO THE INPUT NAME ATTRIBUTE  */}
+        return <section className="note-adder add-note-img" >
+      
             <input type="text" placeholder="Enter image URL" name="url" value={url} onChange={this.handleImgChange} />
             <button className="add-btn" onClick={() => { 
                 this.props.add(type, note)
                 this.reset()
-                 }} >add</button>
+                 }} ></button>
         </section>
     }
 }
