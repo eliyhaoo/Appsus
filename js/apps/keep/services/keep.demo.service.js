@@ -98,7 +98,7 @@ function _getTodos() {
     const todos = [{
             label: 'Get my stuff together',
             todos: [
-                { txt: 'Driving liscence', doneAt: null },
+                { txt: 'Driving license', doneAt: null },
                 { txt: 'Coding power', doneAt: Date.now() }
             ]
         },

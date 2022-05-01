@@ -27,7 +27,7 @@ export class UserMsg extends React.Component{
       }
 
     render(){
-        
+        const { msg } = this.state
         return <div className={`user-msg ${msg.type}`}>
                 {msg.txt}
                 <button onClick={this.onCloseMsg}>X</button>

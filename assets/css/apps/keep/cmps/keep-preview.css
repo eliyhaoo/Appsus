@@ -31,6 +31,10 @@
     flex-grow: 1;
 }
 
+.control-box {
+    margin-right: 5px;
+}
+
 .note h3 {
     font-size: 1.125rem;
 }
@@ -40,8 +44,8 @@
 }
 
 .control-box .btn {
-    width: 20px;
-    height: 20px;
+    width: 27px;
+    height: 27px;
     padding: 5px;
 }
 
@@ -50,8 +54,17 @@
 }
 
 .bg-color-btn {
+    width: 35px;
+    height: 35px;
     background-color: transparent;
     background-image: url('../../../../img/icons/colorpalette_icon.png');
+    background-repeat: round;
+}
+
+.delete-btn {
+    width: 35px;
+    height: 35px;
+    background-image: url('../../../../img/icons/remove-btn-icon.svg');
     background-repeat: round;
 }
 
