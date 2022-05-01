@@ -12,7 +12,6 @@
 
 
 .app-header .nav-bar{
-    /* display: none; */
     opacity: 0;
     display:flex;
     padding:50px, 50px;
@@ -57,11 +56,6 @@
 }
 .app-header .nav-bar .keep-img-container {
     height: 85px;
-}
-.app-header .nav-bar .mail-link .img-container {
-    /* background-color: black; */
-    /* width: 50px;
-    height: 50px; */
 }
 
 

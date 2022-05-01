@@ -11,7 +11,6 @@ export function AppHeader() {
             <h3 className="logo">App<span>sus</span></h3>
             <h3 className="selected-app">Mail</h3>
         </div>
-        {/* <div className="img-container"><img  src="assets/img/icons/apps-icon.png" alt="" /></div> */}
 
         <label className="menu-container" htmlFor="chk"> <img src="assets/img/icons/apps-icon.png" alt="menu" /></label>
         <input type="checkbox" id="chk" />
