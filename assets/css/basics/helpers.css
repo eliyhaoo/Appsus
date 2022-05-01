@@ -45,7 +45,6 @@
 .fa.fa-trash::before{
     content: "\f1f8" ;
 }
-
 .fas.fa-expand::before{
     content: "\f065" ;
 }
@@ -57,5 +56,8 @@
 }
 .fas.fa-user::before{
     content: "\f007" ;
+}
+.fas.fa-search::before{
+    content: "\f002" ;
 }
 

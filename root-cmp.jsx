@@ -9,7 +9,9 @@ const { Route, Switch } = ReactRouterDOM
 
 export function Apps() {
 
+
     return <Router>
+    
         <AppHeader />
        
         <section className="main-route-container">
@@ -21,6 +23,6 @@ export function Apps() {
                 <Route path="/" component={Home} />
             </Switch>
         </section>
-        {/* <UserMsg /> */}
+        <UserMsg />
     </Router>
 }

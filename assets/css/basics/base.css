@@ -51,3 +51,10 @@ button {
 small {
     color: var(--main-sub-text-color)
 }
+
+.screen {
+    position:fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(85, 85, 85, 0.466) 
+}

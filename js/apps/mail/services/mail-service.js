@@ -91,19 +91,20 @@ function trash(id) {
 }
 
 function readToggle(id){
-    console.log('id',id);
+    let isRead = null
     let emails = _loadFromStorage()
     emails = emails.filter(email => {
        if (email.id === id){
            const updatedMail = email
            updatedMail.isRead = !updatedMail.isRead
+           isRead = updatedMail.isRead
            return updatedMail
        }
        return email
     })
    
     _saveToStorage(emails)
-    return Promise.resolve()
+    return Promise.resolve(isRead)
     
 }
 
