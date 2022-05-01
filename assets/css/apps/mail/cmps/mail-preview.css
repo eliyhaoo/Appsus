@@ -5,12 +5,14 @@
     transition: all 0.2s;
     cursor: pointer;
     min-height: 40px;
+    gap:5px;
 }
 .mail-small-preview.read {
     font-family: roboto-bold;
 }
 
 .mail-small-preview .dynamic-container {
+   min-width: 40px;
    max-width: 40px;
    max-height: 1.2em;
    overflow: hidden;
@@ -65,6 +67,7 @@
 }
 .mail-small-preview .preview-start .star::before{
     content: url(https://www.gstatic.com/images/icons/material/system/1x/star_googyellow500_20dp.png);
+
 }
 
 
@@ -90,4 +93,12 @@
 }
 .mail-big-preview .sender-container h4{
     font-family: roboto-bold;
+}
+
+@media (max-width:860px) {
+
+    .mail-small-preview .preview-start{
+        
+        min-width: 146px
+    }
 }

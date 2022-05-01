@@ -6,7 +6,8 @@ export class MailCompose extends React.Component {
             to: '',
             subject:'',
             body:''
-        }
+        },
+       
     }
 
     handleChange=({target})=>{
@@ -21,15 +22,20 @@ export class MailCompose extends React.Component {
         console.log('email sent', this.state.email)
     }
 
+    onClose=()=>{
+        
+        this.props.history.push('/mail')
+    }
+
 
     render() {
 
-        const { to, subject, body } = this.state
-
+        const {isVisible,email} = this.state
+        const { to, subject, body } = email
         return (
+          
             <section className="mail-compose">
-
-                <header className="flex space-between"><span>New Message</span><button>X</button></header>
+                <header className="flex space-between"><span>New Message</span><button onClick={this.onClose} >X</button></header>
 
                 <div className="info-container">
 
@@ -41,7 +47,7 @@ export class MailCompose extends React.Component {
 
 
                         <div className="body-area">
-                            <textarea onChange={this.handleChange} name="body" id="body" required></textarea>
+                            <textarea onChange={this.handleChange} name="body" id="body" required value={body}></textarea>
                         </div>
 
                         <button>Send</button>
@@ -49,6 +55,7 @@ export class MailCompose extends React.Component {
 
                 </div>
             </section>
+           
         )
     }
 }

@@ -19,10 +19,9 @@ export class MailApp extends React.Component {
         isMenuOpen: false,
         criteria: {
             status: 'inbox',
-            txt: '', // no need to support complex text search 
-            filter: 'all', // (optional property, if missing: show all)
-            // isRead: 'all', // (optional property, if missing: show all)
-            // isStared: true, // (optional property, if missing: show all)
+            txt: '', 
+            filter: 'all',
+            
             // lables: ['important', 'romantic'], // has any of the labels }
 
         }

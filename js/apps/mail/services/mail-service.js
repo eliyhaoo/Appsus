@@ -35,9 +35,10 @@ function query(criteria) {
         console.log('creit',criteria);
         let { status, txt ,filter} = criteria
         emails = emails.filter(email => {
-            return status === 'inbox' && !email.sentAt && !email.isInTrash ||
+            
+            return status==='stared' && email.isStar || (status === 'inbox' && !email.sentAt && !email.isInTrash ||
             status === 'sent' && email.sentAt && !email.isInTrash ||
-            status === 'trash' && email.isInTrash 
+            status === 'trash' && email.isInTrash )
             
         })
         if (txt){
@@ -148,20 +149,33 @@ function _filterRead(emails,isRead){
 function _createEmails() {
     const test = [
         _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
+        _createEmail('Snuggle under clouds.. 💤', null, 'Cuddledown@google.com', '“Fluffier than clouds (well, maybe), and cosier than pretty much anything Our snuggly, lightweight down duvet is all youll be dreaming about.'),
         _createEmail('Hi from Julie', null, 'Julie@nJulie.com', 'Thank you for the help last year!'),
         _createEmail('Introducing Shapes — Mapping user journeys just got easier', null, 'ZeplinCrew@nzepplinn.com', 'Earlier this year, we launched Flows to make building user flows easier. You told us you love the snap connectors and locked screens. This month, we made Flows even better! Now, you have the ability to show conditional flows, alternate branches, and actions in Zeplin. Read more about our April product updates, including: Shapes.'),
+        _createEmail('Win up to 549 BUSD!', null, 'Binance@binnace.com', 'Send at least 0.01 BUSD/USDT to your friend to win up to 777 BUSD now!   Competition Period: 2022-04-20 00:00 AM to 2022-05-08 11:59 PM (UTC) Send at least 0.01 BUSD/USDT to a Binance friend by entering their phone number, email address or pay ID and you will receive a BUSD reward of up to 777 BUSD.'),
+        _createEmail('10 new jobs! for Full-Stack Developer', null, 'Linkdin-jobalerts@linkedin.com>', 'Your job alert for full-stack 10 new jobs in Tel-aviv, Central, Israel matches your preferences.   © 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2. LinkedIn is a registered business name of LinkedIn Ireland Unlimited Company. LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn.'),
         _createEmail('Hi from Julie', null, 'Julie@nJulie.com', 'Thank you for the help last year!'),
         _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
         _createEmail('[Update] Changes to the Google Cloud PlatformHi from Julie', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
+        _createEmail('Win up to 0.5 BTC!', null, 'Binance@binnace.com', 'Send at least 0.01 BUSD/USDT to your friend to win up to 777 BUSD now!   Competition Period: 2022-04-20 00:00 AM to 2022-05-08 11:59 PM (UTC) Send at least 0.01 BUSD/USDT to a Binance friend by entering their phone number, email address or pay ID and you will receive a BUSD reward of up to 777 BUSD.'),
+        _createEmail('Warm Regards from Patrik,', null, 'partik@pat.com', 'Thank you for the help last year!'),
         _createEmail('Your account details', null, 'apple@apple.com', 'Introducing info on the go for our best clients, check out our newest website now'),
         _createEmail('👀 Looking for something really special?', null, 'ebay@reply5.ebay.com', 'People like eBay for its unique selection  Be inspired by the treasures people find Discover it'),
         _createEmail('Introducing Shapes — Mapping user journeys just got easier', null, 'ZeplinCrew@nzepplinn.com', 'Earlier this year, we launched Flows to make building user flows easier. You told us you love the snap connectors and locked screens. This month, we made Flows even better! Now, you have the ability to show conditional flows, alternate branches, and actions in Zeplin. Read more about our April product updates, including: Shapes.'),
-        _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
+        _createEmail('25 new jobs IN TEL AVIV! join Full-Stack NOW ', null, 'Linkdin-jobalerts@linkedin.com>', 'Your job alert for full-stack 10 new jobs in Tel-aviv, Central, Israel matches your preferences.   © 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2. LinkedIn is a registered business name of LinkedIn Ireland Unlimited Company. LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn.'),
         _createEmail('[Update] Changes to the Google Cloud PlatformHi from Julie', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
         _createEmail('Sending you my love', null, 'googleCloud@google.com', 'We are sending this message to let you know about the following update to the Google Cloud Platform Subprocessors list'),
+        _createEmail('Win up to 317 ETHER!', null, 'Binance@binnace.com', 'Send at least 0.01 BUSD/USDT to your friend to win up to 777 BUSD now!   Competition Period: 2022-04-20 00:00 AM to 2022-05-08 11:59 PM (UTC) Send at least 0.01 BUSD/USDT to a Binance friend by entering their phone number, email address or pay ID and you will receive a BUSD reward of up to 777 BUSD.'),
+        _createEmail('New release from Music For Dreams', null, 'Bandcamp@google.com', '“If you like Laid Back and Yello - this might be for you...Anders Ponsaing and Michael Rune have got together and made the duo Subnesia. Make sure your hips are ready to shake and do vertical hip thrusters like never before, cause here comes Subnesia with the groovy tune Simple Life.Mixing a shoulder pumping groove with a soulful trombone Subnesia has got you covered with Simple Life for any good moment that needs some extra magic dust.”'),
+        _createEmail('Hello, Looong Weekend 💤', null, 'Cuddledown@google.com', '“Breezy does it.. The nights are getting warmer; your bedding should be getting cooler.Feel the breeze with and relax under the wonderfully casual looking (and feeling) French linen.'),
+        _createEmail('You Have Earned $1.33 with Nexo!', null, 'NexoCommunity@gkegle.com', 'We are sending this message to let you knowSummary of your weekly earned interestBelow is a breakdown of what you earned this week(April 18, 2022 - April 24, 2022)  Note: The figures above are calculated based on the market price of each asset at the time it was paid into your Nexo account.'),
+        _createEmail('25 new jobs IN TEL AVIV! join Full-Stack NOW ', null, 'Linkdin-jobalerts@linkedin.com>', 'Your job alert for full-stack 10 new jobs in Tel-aviv, Central, Israel matches your preferences.   © 2022 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2. LinkedIn is a registered business name of LinkedIn Ireland Unlimited Company. LinkedIn and the LinkedIn logo are registered trademarks of LinkedIn.'),
+        _createEmail('Win up to 657 BUSD!', null, 'Binance@binnace.com', 'Send at least 0.01 BUSD/USDT to your friend to win up to 777 BUSD now!   Competition Period: 2022-04-20 00:00 AM to 2022-05-08 11:59 PM (UTC) Send at least 0.01 BUSD/USDT to a Binance friend by entering their phone number, email address or pay ID and you will receive a BUSD reward of up to 777 BUSD.'),
+        _createEmail('New Video: Avoid These 5 Common Mixing Mistakes', null, 'Unison@unison.audio', 'Hey Eli, just dropped a new YT tutorial. In this one, Aaron (better known as X&G with releases on OWSLA/Dim Mak and has 15+ million plays)... Reveals the 5 common mixing mistakes you might be making now.'),
+        _createEmail('Win up to 777 BUSD!', null, 'Binance@binnace.com', 'Send at least 0.01 BUSD/USDT to your friend to win up to 777 BUSD now!   Competition Period: 2022-04-20 00:00 AM to 2022-05-08 11:59 PM (UTC) Send at least 0.01 BUSD/USDT to a Binance friend by entering their phone number, email address or pay ID and you will receive a BUSD reward of up to 777 BUSD.'),
+        _createEmail('Weclome to Netflix', null, 'Netflix@netflix.com', 'Thank you for joining!'),
         _createSentEmail('Testing Emails', "shlomi@shlomit.com"),
-        _createSentEmail('Testing Emails', "shlomi@shlomit.com"),
-        _createSentEmail('Testing Emails', "shlomi@shlomit.com"),
+    
     ]
 
     return test
@@ -189,7 +203,7 @@ function _createSentEmail(subject, to, body = 'Would love to catch up sometimes'
         id: utilService.makeId(5),
         subject,
         body,
-        isRead: Math.random() > 0.2 ? false : true,
+        isRead:  false ,
         sentAt: Date.now(),
         receivedAt: null,
         to,
