@@ -2,11 +2,14 @@
     margin: 10px auto;
     align-items: center;
     padding: 0 20px;
+    height: 48px;
     box-shadow: 0 2px 0 2px rgba(0, 0, 0, 0.132);
     border-radius: 7px;
 }
 
 .note-adder {
+    align-items: center;
+    display: flex;
     margin-right: 25px;
 }
 
@@ -21,6 +24,10 @@
     padding: 0 20px;
     height: 25px;
     width: 285px;
+}
+
+.note-adder input::placeholder {
+    font-size: 1rem;
 }
 
 .add-note input:focus-visible {
@@ -44,41 +51,62 @@
 .note-adder .add-btn {
     width: 25px;
     height: 25px;
-    margin-top: 4x;
-    background-repeat: round;
+    background-size: contain;
     background-image: url('../../../../img/icons/add-btn-icon.svg');
+    opacity: 0.5;
+}
+
+.note-adder .add-btn:hover {
+    opacity: 1;
 }
 
 .add-btn,
 .btn:hover {
+    opacity: 1;
     cursor: pointer;
 }
 
+.add-btns-container>* {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    opacity: 0.5;
+}
+
 button.btn.txt-selector {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 1px;
-    background-repeat: round;
+    /* margin-bottom: 1px; */
     background-image: url('../../../../img/icons/add-txt-btn-icon.svg');
 }
 
 button.btn.img-selector {
-    width: 24px;
-    height: 24px;
-    background-repeat: round;
     background-image: url('../../../../img/icons/add-img-btn-icon.svg');
 }
 
 button.btn.video-selector {
-    width: 30px;
-    height: 45px;
-    background-repeat: round;
     background-image: url('../../../../img/icons/video-btn-icon.svg');
 }
 
 button.btn.todos-selector {
-    width: 30px;
-    height: 30px;
-    background-repeat: round;
     background-image: url('../../../../img/icons/todo-btn-icon.svg');
+}
+
+@media (max-width:540px) {
+    .note-adder {
+        margin: 0;
+    }
+    .note-adder input {
+        width: 100%;
+    }
+    .note-adder input::placeholder {
+        font-size: 1rem;
+    }
+    .add-note.space-around {
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+    }
+    .add-btns-container {
+        margin-inline-end: 15px;
+    }
 }

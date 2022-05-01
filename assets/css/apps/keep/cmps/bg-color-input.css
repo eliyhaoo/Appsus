@@ -31,3 +31,11 @@
 .items-container>.btn {
     background-color: transparent;
 }
+
+.close-palette {
+    width: 25px;
+    height: 25px;
+    margin-inline-start: 10px;
+    background-repeat: round;
+    background-image: url('../../../../img/icons/remove-btn-icon.svg');
+}

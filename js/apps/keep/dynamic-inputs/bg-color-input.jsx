@@ -1,5 +1,3 @@
-
-
 export function BgColorInput({handleStyleChange, togglePalette}){
     const colors = ['#fff', '#f28b82','#fbbc04',' #fff475','#d7aefb','#e8eaed','#a7ffeb']
 
@@ -11,7 +9,7 @@ export function BgColorInput({handleStyleChange, togglePalette}){
                 onClick={()=> handleStyleChange('backgroundColor', color)}
                 ></div>
             })}
-            <button className="btn" onClick={togglePalette} >X</button>
+            <button className="btn close-palette" onClick={togglePalette} ></button>
         </div>
     </section>
 }
