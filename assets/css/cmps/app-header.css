@@ -36,7 +36,7 @@
     transition: all 0.4s;
 }
 
-.app-header #chk:checked+.nav-bar {
+.app-header .nav-bar.open-menu {
     opacity: 1;
     right: 5px;
 }
@@ -64,10 +64,5 @@
     height: 85px;
 }
 
-.app-header #chk {
-    display: none;
-}
 
-.active {
-    text-decoration: underline 2px rgb(77, 75, 75);
-}
+
