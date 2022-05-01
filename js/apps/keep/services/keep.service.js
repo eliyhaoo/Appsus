@@ -129,7 +129,8 @@ function _createNoteVideo(note) {
 
 function _getVideoId(url) {
     let splitUrl = url.split('=')
-    return splitUrl[1]
+    return `https://www.youtube.com/embed/${splitUrl[1]}`
+
 }
 
 function _createNoteImg(note) {

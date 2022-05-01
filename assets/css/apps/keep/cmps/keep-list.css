@@ -2,7 +2,10 @@
     margin: 10px 25px 50px;
     height: 100%;
     break-inside: avoid;
-    columns: 200px;
+    /* columns: 200px; */
+    column-count: 7;
+    column-width: 340px;
+    column-gap: 15px;
 }
 
 .previews-container {

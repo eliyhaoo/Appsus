@@ -1,10 +1,17 @@
 .app-header {
-
-    
-    padding: 5px;
-   
+    padding: 5px 30px;
 }
 
-.app-header .img-container{
-    width: 35px 
+.app-header .img-container {
+    width: 35px
+}
+
+.nav-bar {
+    width: 75px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.active {
+    text-decoration: underline 2px rgb(77, 75, 75);
 }
