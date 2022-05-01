@@ -12,7 +12,7 @@
 .mini-header.mail-header .search-filter-container {
     background-color: lightcoral;
     height: 100%;
-    margin-inline-start: 256px;
+    margin-inline-start: 281px;
     max-width:820px;
     background-color: var(--secondary-bg-color);
     border: 1px solid transparent;
@@ -77,7 +77,7 @@
 
 @media  (max-width: 860px) {
     .mini-header.mail-header .search-filter-container {
-        margin-inline-start:20px;
-        width:97%
+        margin-inline-start:17px;
+        width:94%
     }
  }

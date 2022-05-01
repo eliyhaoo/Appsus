@@ -21,5 +21,9 @@
    .mail-app-container .mail-app {
       flex-direction: column;
    }
+
+   .mail-list{
+      margin-top:10px;
+   }
    
 }

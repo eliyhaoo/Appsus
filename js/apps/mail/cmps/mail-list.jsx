@@ -37,7 +37,7 @@ export class MailList extends React.Component {
             }
             currEmail.isShowen =  boolean
             const updatedEmails =emails.map(email => email.id === emailId? currEmail : email)
-            this.setState({emails:updatedEmails},()=>console.log('new emails',this.state))
+            this.setState({emails:updatedEmails})
             
         })
     }
@@ -49,11 +49,7 @@ export class MailList extends React.Component {
         const {emails,status} = this.state
         if (!emails) return <React.Fragment></React.Fragment>
         return <section className="mail-list flex column">
-
-       
-        {emails.map(email=> <MailPreview status={status} key={email.id} isShowen={email.isShowen}  email={email} onDelete={this.onDelete} onEmailClick={this.onEmailClick}/>)}
-        {/* <Link to={`/mail/details/265165156`}>LINK</Link> */}
-
+        {emails.map(email=> <MailPreview status={status} key={email.id} isShowen={email.isShowen}  email={email} onEmailClick={this.onEmailClick}/>)}
     </section>
     }
 } 

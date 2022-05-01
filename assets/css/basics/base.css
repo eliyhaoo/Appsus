@@ -11,12 +11,15 @@
 body {
     height: 100vh;
     background-color: var(--main-bg-color);
-    font-family: roboto-regular;
-    /* font-family: roboto-regular, sans-serif; */
+    font-family: roboto-regular, sans-serif;;
     margin: 0 auto;
     font-size: 0.875rem;
     color: var(--main-text-color);
-    padding-inline-end: 10px;
+}
+
+pre{
+    font-family:roboto-regular;
+    white-space: pre-wrap;
 }
 
 h1,

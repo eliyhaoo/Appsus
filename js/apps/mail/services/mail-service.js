@@ -11,7 +11,8 @@ export const mailService = {
     add,
     updateEmail,
     readToggle,
-    starToggle
+    starToggle,
+    getEmailCount
 
 }
 
@@ -129,6 +130,19 @@ function updateEmail(updatedMail) {
     _saveToStorage(emails)
     return Promise.resolve()
 }
+
+function getEmailCount(){
+
+    const emails = _loadFromStorage()
+        let unread =0
+        let total= 0
+         emails.forEach(email=>{
+            if (!email.isRead) unread++
+            if (email.receivedAt && !email.isInTrash) total++
+        })
+        return Promise.resolve({unread,total})
+}
+
 
 function _filterByText(emails, term) {
     return emails.filter(email =>

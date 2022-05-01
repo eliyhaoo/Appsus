@@ -55,4 +55,7 @@
 .fas.fa-envelope-close::before{
     content: "\e4e8" ;
 }
+.fas.fa-user::before{
+    content: "\f007" ;
+}
 

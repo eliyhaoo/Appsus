@@ -9,7 +9,6 @@ export class MailDetails extends React.Component {
     }
 
     componentDidMount() {
-        console.log('MOUNTED');
         this.loadEmail()
     }
 
@@ -18,7 +17,7 @@ export class MailDetails extends React.Component {
         mailService.getEmailById(emailId)
             .then(email => {
                 if (!email) return this.props.history.push('/mail')
-                this.setState({ email }, () => console.log('STATE', this.state))
+                this.setState({ email })
             })
     }
 
@@ -37,7 +36,7 @@ export class MailDetails extends React.Component {
         const mail = sentAt ? to : from
         const fullDate = sentAt ? utilService.getFormatedDate(sentAt) :utilService.getFormatedDate(receivedAt)
 
-        const isInTrash = status === 'trash' ? true : false //make Delete from here
+        // const isInTrash = status === 'trash' ? true : false //make Delete from here
 
 
         return <section className="mail-details">
@@ -47,17 +46,12 @@ export class MailDetails extends React.Component {
 
             <div className="sender-info flex space-between">
                 <div className="sender-container flex align-center">
-                    <h4>{sender}</h4>
+                    <span className="fas fa-user"></span><h4>{sender}</h4>
                     <small>{`<${mail}>`}</small>
                 </div>
                 <span className='date'>{fullDate}</span>
             </div>
-            <p>{body}</p>
-
-            {/* <h4>{`<${from}>`}</h4>
-            <p>{body}</p>
-            <h4>{time}</h4>
-            <button onClick={() => this.deleteEmail(id)} >Delete</button> */}
+            <pre>{body}</pre>
 
 
         </section>

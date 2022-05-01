@@ -1,10 +1,16 @@
 .app-header {
 
     
-    padding: 5px 22px 5px 34px;
+    padding: 5px 20px 5px 20px;
    
 }
 
 .app-header .img-container{
     width: 35px 
+}
+
+.app-header 
+
+.app-header .chk{
+    display:none;
 }

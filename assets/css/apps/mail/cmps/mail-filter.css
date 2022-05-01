@@ -3,23 +3,37 @@
     height: 100%; 
 }
 
+
 .mail-filter .filter-options-container  {
     margin-inline-end: 0.5rem;  
     color:var(--main-sub-text-color)
 }
-.mail-filter .filter-options-container >* {
+.mail-filter .filter-options-container >*:not(:last-child) {
     display: flex;
     gap: 18px;
     align-items: center;
+    align-content: center;
     height:32px;
     padding:0 12px 0 34px;
     border-radius: 0 1rem 1rem 0;
     margin-bottom: 0.2em;
     cursor: pointer;
 }
+.mail-filter .filter-options-container :last-child {
+    
+}
 .mail-filter .filter-options-container >*:hover {
 
    background-color: var(--main-hoover-color) ;
+}
+.mail-filter .filter-options-container  .inbox {
+   /* font-family: roboto-bold; 
+   background-color: var(--inbox-hoover-color) ;
+   color:#db392f;  */
+   display: flex;
+   align-items: center;
+   gap: inherit;
+
 }
 .mail-filter .filter-options-container >*.inbox-active {
    font-family: roboto-bold; 
@@ -94,7 +108,65 @@
 }
 
 
-@media  (max-width: 860px) {
+
+
+ /* LOADING BAR */
+
+ .mail-filter .progress-bar-title{
+
+    margin-top: 10px;
+    font-size: 0.75rem;
+ }
+
+ .mail-filter progress[value]{  
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    margin-inline-start: 34px;
+
+    
+}
+.mail-filter progress[value]::-webkit-progress-bar{  
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.mail-filter progress[value]::-webkit-progress-value {
+    background-image:
+    -webkit-linear-gradient(-45deg, 
+     transparent 33%, rgba(0, 0, 0, .1) 33%, 
+     rgba(0,0, 0, .1) 66%, transparent 66%),
+    -webkit-linear-gradient(top, 
+     rgba(255, 255, 255, .25), 
+     rgba(0, 0, 0, .25)),
+    -webkit-linear-gradient(left, #09c, #f44);
+  
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+
+    -webkit-animation: animate-stripes 5s linear infinite;
+    animation: animate-stripes 5s linear infinite;
+    
+  }
+
+  @-webkit-keyframes animate-stripes {
+    100% { background-position: -100px 0px; }
+ }
+ 
+ @keyframes animate-stripes {
+    100% { background-position: -100px 0px; }
+ }
+
+
+
+ /* MEDIA QUERIES */
+
+ @media  (max-width: 860px) {
     
     .mail-filter {
         position:relative;
@@ -108,14 +180,15 @@
     }
     .mail-filter .mail-nav-bar {
     
-        margin-inline-start: 24px;
+        margin-inline-start: 20px;
         margin-bottom:20px;
         cursor: pointer;
     }
 
 
     .mail-filter .filter-options-container{
-        
+       
+        border-bottom: solid 1px var(--main-border-color);
         /* bottom: 0;
         left:0; */
         width: 100%;
@@ -123,6 +196,8 @@
         overflow: hidden;
         transition: max-height 0.8s;
     }
+
+    
 
     .mail-filter .filter-options-container.open-menu {
         max-height: 100vh;
@@ -133,8 +208,5 @@
         bottom: 50px;
         right: 50px;
     
-    }
-    
-   
-    
+    }  
  }
