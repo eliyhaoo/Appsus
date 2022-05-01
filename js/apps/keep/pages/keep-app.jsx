@@ -12,22 +12,24 @@ export class KeepApp extends React.Component {
     }
 
     removeDeleteEvent;
-    // removeAddEvent;
     componentDidMount() {
         this.loadNotes()
-        //! Must implement removing note through props sent to note
     }
 
     onRemove = (noteId) => {
         keepService.remove(noteId)
             .then(this.loadNotes)
-
-        //! Add usermsg here with emit eventBus 'Note Removed'
+            .then(()=> eventBusService.emit('user-msg', 'Note was deleted'))
+    
     }
 
     onSaveNote = (type, note) => {
         keepService.saveNote(type, note)
             .then(this.loadNotes)
+            .then(()=>{
+                if(!note.id) eventBusService.emit('user-msg', 'Your note was added')
+                else eventBusService.emit('user-msg', 'Your note was updated')
+            })
     }
 
     loadNotes = () => {

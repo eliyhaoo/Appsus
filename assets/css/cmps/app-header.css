@@ -3,13 +3,37 @@
 }
 
 .logo {
+    padding-left: 11px;
     font-family: 'source-code';
-    font-size: 1.125rem;
-    text-decoration: underline;
+    font-size: 2rem;
 }
 
-.logo>span {
-    font-style: italic;
+.logo>span.logo-a {
+    color: #4285F4;
+}
+
+.logo>span.logo-p1 {
+    color: #EA4335;
+}
+
+.logo>span.logo-p2 {
+    color: #FBBC05;
+}
+
+.logo>span.logo-s1 {
+    color: #4285F4;
+}
+
+.logo>span.logo-u {
+    color: #34A853;
+}
+
+.logo>span.logo-s2 {
+    color: #EA4335;
+}
+
+.logo:hover {
+    text-decoration: underline;
 }
 
 .app-header .menu-container {
