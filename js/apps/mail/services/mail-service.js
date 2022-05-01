@@ -26,14 +26,12 @@ const loggedinUser = {
 function query(criteria) {
 
     let emails = _loadFromStorage()
-    console.log('emaillllls,',emails);
     if (!emails || !emails.length) {
         emails = _createEmails()
         _saveToStorage(emails)
     }
 
     if (criteria) {
-        console.log('creit',criteria);
         let { status, txt ,filter} = criteria
         emails = emails.filter(email => {
             

@@ -29,7 +29,7 @@ export function BigPreview({ email, onEmailClick,status }) {
             </div>
 
             <pre>{body}</pre>
-            {/* <p>{body}</p> */}
+          
 
 
 

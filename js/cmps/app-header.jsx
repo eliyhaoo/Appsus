@@ -10,7 +10,6 @@ export class AppHeader extends React.Component {
     }
 
     toggleMenu = () => {
-        console.log('closing menu', this.state);
         this.setState((prevState) => ({ ...prevState, isMenuOpen: !this.state.isMenuOpen }))
     }
 

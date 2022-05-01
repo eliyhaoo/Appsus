@@ -33,6 +33,7 @@ export class MailApp extends React.Component {
     removeDeleteEvent
     removeReadEvent
     removeStarEvent
+    removeUnreadEvent
 
   
 
@@ -44,7 +45,8 @@ export class MailApp extends React.Component {
         this.removeDeleteEvent = eventBusService.on('delete', (emailId) => { this.DeleteEmail(emailId) })
         this.removeReadEvent = eventBusService.on('read-toggle', (emailId) => { this.readToggle(emailId) })
         this.removeStarEvent = eventBusService.on('star-toggle', (emailId) => { this.starToggle(emailId) })
-        
+        this.removeUnreadEvent = eventBusService.on('open-unread', () => { this.setEmailsCount()})
+     
     }
 
     componentWillUnmount(){
@@ -53,6 +55,7 @@ export class MailApp extends React.Component {
         this.removeDeleteEvent()
         this.removeReadEvent()
         this.removeStarEvent()
+        this.removeUnreadEvent()
     }
 
     handleChange=(field,value)=>{
@@ -74,10 +77,10 @@ export class MailApp extends React.Component {
     
     onSetFilter=(status)=>{
         this.setState((prevState)=>({criteria:{...prevState.criteria,status}}),()=>{
-            const urlSrcParms = new URLSearchParams(status)
-            const searchStr = urlSrcParms.toString()
-            console.log('SEARCH PRAMS',urlSrcParms);
-            this.props.history.push(`/mail?${status}`)
+            // const urlSrcParms = new URLSearchParams(status)
+            // const searchStr = urlSrcParms.toString()
+            // console.log('SEARCH PRAMS',urlSrcParms);
+            this.props.history.push(`/mail`)
             this.loadEmails()
         })
     }
@@ -144,7 +147,6 @@ export class MailApp extends React.Component {
     render() {
         const { emails ,mailsCount ,criteria,isMenuOpen} = this.state
         const isEmailsExsist = emails.length ? true : false
-        console.log('emails',emails);
         return <section className="mail-app-container">
 
             <MailHeader onSearch={this.onSearch}/>
@@ -156,7 +158,7 @@ export class MailApp extends React.Component {
                 <Switch>
                     <Route path="/mail/details/:emailId?" component={MailDetails} />
                     <Route path="/mail/compose" component={MailCompose} />
-                    <Route path="/mail/" component={MailList} />
+                    <Route path="/mail/:status?" component={MailList} />
                 </Switch>
 
 

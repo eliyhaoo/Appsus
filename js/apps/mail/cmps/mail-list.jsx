@@ -33,7 +33,7 @@ export class MailList extends React.Component {
             if (!currEmail.isRead) {
                 currEmail.isRead = true
                 mailService.updateEmail(currEmail)
-                
+                eventBusService.emit('open-unread')
             }
             currEmail.isShowen =  boolean
             const updatedEmails =emails.map(email => email.id === emailId? currEmail : email)
