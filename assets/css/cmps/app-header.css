@@ -1,8 +1,15 @@
 .app-header {
-
-    
     padding: 5px 20px 5px 20px;
-   
+}
+
+.logo {
+    font-family: 'source-code';
+    font-size: 1.125rem;
+    text-decoration: underline;
+}
+
+.logo>span {
+    font-style: italic;
 }
 
 .nav-bar {
@@ -11,11 +18,10 @@
     justify-content: space-between;
 }
 
-.app-header 
-
-.app-header .chk{
-    display:none;
+.app-header .app-header .chk {
+    display: none;
 }
+
 .active {
     text-decoration: underline 2px rgb(77, 75, 75);
 }

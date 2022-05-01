@@ -17,22 +17,27 @@
     font-family: lato-x-bold;
     src: url('../../fonts/Lato-Black.ttf');
 }
+
 @font-face {
     font-family: roboto-light;
     src: url('../../fonts/roboto/Roboto-Light.ttf');
 }
+
 @font-face {
     font-family: roboto-regular;
     src: url('../../fonts/roboto/Roboto-Regular.ttf');
 }
+
 @font-face {
     font-family: roboto-medium;
     src: url('../../fonts/roboto/Roboto-Medium.ttf');
 }
+
 @font-face {
     font-family: roboto-bold;
     src: url('../../fonts/roboto/Roboto-Bold.ttf');
 }
+
 
 /* Fonts Awsome */
 
@@ -40,7 +45,16 @@
     font-family: fa;
     src: url('../../fonts/awsome/fa-v4compatibility.ttf');
 }
+
 @font-face {
     font-family: fas;
     src: url('../../fonts/awsome/fa-solid-900.ttf');
+}
+
+
+/* Logo Font  */
+
+@font-face {
+    font-family: source-code;
+    src: url('../../fonts/source-code-pro/SourceCodePro-Regular.ttf');
 }

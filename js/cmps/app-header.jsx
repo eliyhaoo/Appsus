@@ -1,14 +1,13 @@
 
-const {NavLink} = ReactRouterDOM
+const {Link, NavLink} = ReactRouterDOM
 
 
 export function AppHeader(){
 
-
-    return <header className="app-header flex space-between flex-center">
+        return <header className="app-header flex space-between flex-center">
         <div className="logo-container flex">
-        <h3 className="logo">App<span>sus</span></h3> 
-        <h3 className="selected-app">Mail</h3>
+        <Link to='/'><h3 className="logo">App<span>sus</span></h3> </Link>
+        {/* <h3 className="selected-app">Mail</h3> */}
         </div>
         {/* <div className="img-container"><img  src="assets/img/icons/apps-icon.png" alt="" /></div> */}
 
@@ -25,5 +24,6 @@ export function AppHeader(){
         </nav>
       
     </header>
+
 
 }
