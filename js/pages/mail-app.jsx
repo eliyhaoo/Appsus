@@ -144,6 +144,7 @@ export class MailApp extends React.Component {
     render() {
         const { emails ,mailsCount ,criteria,isMenuOpen} = this.state
         const isEmailsExsist = emails.length ? true : false
+        console.log('emails',emails);
         return <section className="mail-app-container">
 
             <MailHeader onSearch={this.onSearch}/>

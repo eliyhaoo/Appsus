@@ -26,7 +26,7 @@ const loggedinUser = {
 function query(criteria) {
 
     let emails = _loadFromStorage()
-
+    console.log('emaillllls,',emails);
     if (!emails || !emails.length) {
         emails = _createEmails()
         _saveToStorage(emails)
@@ -196,7 +196,7 @@ function _createEmails() {
     return test
 }
 
-function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love to catch up sometimes', to = 'yaronb@appsus.com') {
+function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love to catch up sometimes', to = this.loggedinUser.email) {
     return {
         id: utilService.makeId(5),
         subject,
@@ -208,7 +208,7 @@ function _createEmail(subject, sentAt = (Date.now()), from, body = 'Would love t
         from,
         isShowen: false,
         isInTrash: false,
-        isStar: false
+        isStar: Math.random() > 0.7 ? false : true
     }
 
 }
@@ -222,16 +222,13 @@ function _createSentEmail(subject, to, body = 'Would love to catch up sometimes'
         sentAt: Date.now(),
         receivedAt: null,
         to,
-        from: 'yaronb@appsus.com',
+        from: this.loggedinUser.email,
         isShowen: false,
         isInTrash: false,
         isStar: false
     }
 
 }
-
-
-
 
 
 const email = {
