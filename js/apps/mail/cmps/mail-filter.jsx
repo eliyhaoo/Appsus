@@ -1,5 +1,6 @@
-
+import { eventBusService } from "../../../services/event-bus-service.js"
 const { Link } = ReactRouterDOM
+
 
 
 export function MailFilter({ onSetFilter, count, status, toggleMenu, isMenuOpen }) {
@@ -11,6 +12,8 @@ export function MailFilter({ onSetFilter, count, status, toggleMenu, isMenuOpen 
     const draftActive = status === 'draft' ? 'active' : ''
     const staredActive = status === 'stared' ? 'active' : ''
     const menuClass = isMenuOpen ? 'open-menu' : ''
+
+  
 
     return <section className="mail-filter">
         <Link to="mail/compose" >
@@ -34,6 +37,7 @@ export function MailFilter({ onSetFilter, count, status, toggleMenu, isMenuOpen 
         <progress max={total} value={unread}></progress>
         </div>
 
+        
 
 
       

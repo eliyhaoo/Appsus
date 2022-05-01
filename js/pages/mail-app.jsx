@@ -58,8 +58,7 @@ export class MailApp extends React.Component {
     handleChange=(field,value)=>{
        
         this.setState((prevState)=>({criteria: {...prevState.criteria,[field]:value} }),()=>{
-            this.loadEmails()
-          
+            this.loadEmails() 
         })
     }
 
@@ -95,19 +94,23 @@ export class MailApp extends React.Component {
 
     readToggle(emailId){
         mailService.readToggle(emailId)
-        .then(this.loadEmails)
+        .then((isRead)=>{
+            this.loadEmails()
+            if (!isRead) eventBusService.emit('user-msg','E-mail marked as unread')
+            if (isRead) eventBusService.emit('user-msg','E-mail marked as read')
+            
+        })
+
     }
 
     starToggle(emailId){
         console.log('TOGGLE ', emailId);
         mailService.starToggle(emailId)
         .then(this.loadEmails)
+       
     }
 
-    moveToTrash=(emailId)=> {
-        mailService.trash(emailId)
-            .then(this.loadEmails)
-    }
+ 
 
     onToggleMenu=()=>{
         this.setState({isMenuOpen:!this.state.isMenuOpen})
@@ -119,6 +122,7 @@ export class MailApp extends React.Component {
         .then(()=>{
             this.props.history.push('/mail')
             this.loadEmails()
+            eventBusService.emit('user-msg','E-mail sent successfully!')
         })
 
     }
@@ -126,8 +130,14 @@ export class MailApp extends React.Component {
     DeleteEmail=(emailId)=> {
         mailService.remove(emailId)
             .then(this.loadEmails)
+            eventBusService.emit('user-msg','E-mail deleted successfully!')
     }
 
+    moveToTrash=(emailId)=> {
+        mailService.trash(emailId)
+            .then(this.loadEmails)
+            eventBusService.emit('user-msg','E-mail moved to Trash!')
+    }
 
 
 

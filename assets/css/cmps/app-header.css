@@ -1,21 +1,75 @@
 .app-header {
-
-    
     padding: 5px 20px 5px 20px;
+}
+
+.app-header .menu-container{
+    width:48px;
+    display:flex;
+    align-items: center;
+
+}
+
+
+
+.app-header .nav-bar{
+    /* display: none; */
+    opacity: 0;
+    display:flex;
+    padding:50px, 50px;
+    border-radius: 8px;
+    position: fixed;
+    background-color: var(--main-bg-color);
+    width: 300px;
+    height: 243px;
+    justify-content: space-between;
+    top: 55px;
+    z-index: 3;
+    padding: 40px 40px;
+    box-shadow: -1px 0px 9px 1px rgba(0,0,0,0.65);
+    right: -500px;
+    transition: all 0.4s;
+}
+.app-header #chk:checked + .nav-bar{
+    opacity:1;
+    right: 5px;
+
+}
+
+
+
+.app-header .nav-bar .mail-link  {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-header .nav-bar .keep-link {
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:15px
+}
+.app-header .nav-bar .mail-img-container  {
+    height: 100px;
    
 }
-
-.nav-bar {
-    width: 75px;
-    display: flex;
-    justify-content: space-between;
+.app-header .nav-bar .keep-img-container {
+    height: 85px;
+}
+.app-header .nav-bar .mail-link .img-container {
+    /* background-color: black; */
+    /* width: 50px;
+    height: 50px; */
 }
 
-.app-header 
 
-.app-header .chk{
+.app-header #chk{
     display:none;
 }
+
+
 .active {
     text-decoration: underline 2px rgb(77, 75, 75);
 }

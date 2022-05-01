@@ -26,7 +26,7 @@ export class MailHeader extends React.Component {
 
                 <div  className="mail-search-container">
 
-                    <input onChange={this.handleChange} name="txt" type="search" value={txt} placeholder="Search Mail" />
+                    <input  onChange={this.handleChange} name="txt" type="search" value={txt} placeholder="Search Mail" />
 
                 </div>
 

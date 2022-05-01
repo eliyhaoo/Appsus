@@ -12,7 +12,7 @@ export class UserMsg extends React.Component{
     componentDidMount() { 
         this.removeEvent = eventBusService.on('user-msg', (msg) => {
             this.setState({msg})
-            if(this.timeoutId) clearTimeout(timeoutId)
+            if(this.timeoutId) clearTimeout(this.timeoutId)
             this.timeoutId = setTimeout(this.onCloseMsg, 2000)
         })
      }
@@ -28,8 +28,11 @@ export class UserMsg extends React.Component{
 
     render(){
         
-        return <div className={`user-msg ${msg.type}`}>
-                {msg.txt}
+            const {msg} = this.state
+            if(!msg) return <React.Fragment></React.Fragment>
+        return <div className='user-msg'>
+                {msg}
+               
                 <button onClick={this.onCloseMsg}>X</button>
         </div>
     }
